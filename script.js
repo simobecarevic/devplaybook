@@ -30,7 +30,7 @@ document.body.appendChild(newsBanner);
 element.removeChild() //  passing in the child node (’ e.g. ref to child node, e.g. received from .getElementById') as the argument (’not selector/cl/id of child node, but child Nd itself’)
 
 element.style // access or set the CSS style rules of an element. To do so, values are assigned to the attributes of element.style
-// setting the backgroundColor attribute of the style property to blue, the CSS property background-color becomes blue. if the CSS property contains a hyphen, such as font-family or background-color, Camel Case notation is used in Javascript for the attribute name
+// setting the backgroundColor attribute of the style property to blue, the CSS property background-color becomes blue. if the CSS property contains a hyphen, such as font-family or background-color, Camel Case notation is used in Javascript for the attribute name. No semi-colon inside str
 
 let blueElement = document.getElementById('colorful-element');
 blueElement.style.backgroundColor = 'blue';
@@ -44,6 +44,7 @@ element.onclick = function() {
     let newElement = document.createElement('li');
     document.getElementById('list').appendChild(newElement);
 };
+
 // Add an <li> element each time the element with ID addItem is clicked by the user. 
 
 
@@ -60,13 +61,8 @@ eventTarget.addEventListener("event", eventHandlerFunction);
 
 // list of events: "keyup" "keydown" "keypress" "click" "mouseout" "mouseover" "mousedown" "mouseover"
 
+
 */
 
-const aphorisms = ["You are what you see", "This too shall pass", "Negativity is defeat", "You are what you believe", "If a man is right his world will be right"]
 
-const body = document.body;
-
-for (const a of aphorisms) {
-    body.innerHTML += `<p>${a}</p>`;
-}
 
