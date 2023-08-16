@@ -1,3 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(19, 20, 23);
+    font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    
+}
+
+header {
+    position: relative;
+    background-color: rgb(30, 31, 38);
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+
+ul button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 20px 10px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
 main {
     display: grid;
     grid-template-columns: 20% 20%;
