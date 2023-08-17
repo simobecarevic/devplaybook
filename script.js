@@ -8,11 +8,11 @@ document.querySelector()  //can invoke on ref to any el & will search descendent
 
 //also...
 myElements = document.getElementsByTagName("p"); // Multiple Els
-myElements = document.getElementsByClassName("intro"); // can do this TOO, no need for ".", selects ALL, returns list
+myElements = document.getElementsByClassName("intro"); // can do this TOO, no need for ".", selects ALL, returns special collection obj that can be indexed
 
 // CREATING
 
-document.createElement("button") // Md only on "document" obj; only Tg name, creates el does not render; needs to be saved to Vr/idfr/ref or pass literal to below Mds; ALSO does not add "innerHTML" that is sep Md
+document.createElement("button") // Md only on "document" obj; only Tg name, creates El does not render; needs to be saved to Vr/Idfr/Ref or pass literal to below Mds; ALSO does not add "innerHTML" that is Sep Md
 
 let newsBanner = document.createElement('h2');
 
@@ -63,6 +63,5 @@ eventTarget.addEventListener("event", eventHandlerFunction);
 
 
 */
-
 
 

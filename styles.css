@@ -10,25 +10,80 @@ body {
 }
 
 header {
-    position: relative;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
     background-color: rgb(30, 31, 38);
 }
 
-ul {
-    list-style-type: none;
-    display: flex;
-    width: 80%;
+.header-content {
+    width: 90%;
     margin: 0 auto;
+    display: flex;
 }
 
-ul button {
-    background-color: transparent;
+.logo {
+    display: flex;
+    align-items: center;
+    margin: 0 50px 0 0; 
+}
+
+.logo-symbol {
+    width: 2rem;
+    height: 2rem;
+    padding: 0 3px 0 0; 
+}
+
+.logo-title {
     color: white;
-    border: none;
-    padding: 20px 10px;
+    font-size: 1.6rem;
+}
+
+.header-nav {
+    list-style-type: none;
+}
+
+.header-nav li {
+    display: inline-block;
+}
+
+.header-nav-signup {
+    text-decoration: none;
+    color: white;
+    padding: 22px 10px 18px;
     font-size: 1rem;
     line-height: 1.5rem;
 }
+
+.header-nav-tools {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 22px 10px 18px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-tools:hover {
+    color: #C1BFBE;
+}
+
+.nav-option-menu-arrow {
+    display: inline-block;
+    width: 20px;
+    opacity: 1;
+    transition: transform ease 300ms; /* K* w/o this, when un-hover, would abruptly/instantanously revert to default styling, instead of transitioning smoothly back from the "transform"*/
+}
+
+.header-nav-tools:hover .nav-option-menu-arrow {
+    opacity: 0.5;
+    transition: transform ease 300ms; /* K* indicates how the transform should take place, transition into it */
+    transform: translateY(1.5px); /* K* indicates what the transform is */
+}
+
+
 
 main {
     display: grid;
