@@ -45,6 +45,7 @@ header {
 
 .header-nav li {
     display: inline-block;
+    position: relative;
 }
 
 .header-nav-signup {
@@ -56,6 +57,10 @@ header {
 }
 
 .header-nav-tools {
+    position: relative; /* K* Parent El of Drop-down Menu must be set to position: relative, NOT sister El (e.g. button that on hover causes drop down to appear, itc .header-nav-tools-btn); will cause a bug such that dropdown does NOT appear */
+}
+
+.header-nav-tools-btn {
     background-color: transparent;
     color: white;
     border: none;
@@ -66,7 +71,7 @@ header {
     align-items: center;
 }
 
-.header-nav-tools:hover {
+.header-nav-tools-btn:hover {
     color: #C1BFBE;
 }
 
@@ -83,6 +88,35 @@ header {
     transform: translateY(1.5px); /* K* indicates what the transform is */
 }
 
+.tools-dropdown {
+    position: absolute; /* K* drop-down must be absolute */
+    display: none;  /* dflt display is none */
+
+    border-radius: 5px;
+    padding: 24px;
+    background-color: white;
+    width: 200px;
+
+   /*  opacity: 0; */
+    transform: translateY(0.7em) scale(0.99);
+
+}
+
+.header-nav-tools:hover .tools-dropdown {
+    display: block;  /* causes drop-down to appear */
+
+    transition: transform ease 500ms;
+    /* opacity: 1; */
+    transform: scale(1) translateY(0);
+}
+
+.tools-dropdown a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 8px 0 24px 0;
+    margin: 0 0 16px;
+}
 
 
 main {
