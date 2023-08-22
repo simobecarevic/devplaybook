@@ -71,7 +71,7 @@ header {
     align-items: center;
 }
 
-.header-nav-tools-btn:hover {
+.header-nav-tools-btn:hover, .header-nav-signup:hover {
     color: #C1BFBE;
 }
 
