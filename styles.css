@@ -22,10 +22,15 @@ header {
     display: flex;
 }
 
-.logo {
+.logo-link {
+    text-decoration: none;
     display: flex;
     align-items: center;
-    margin: 0 50px 0 0; 
+}
+
+.logo {
+    margin: 0 20px 0 0; 
+    display: flex; /* doing this instead of making all child els inline-block, easier */
 }
 
 .logo-symbol {
@@ -41,6 +46,7 @@ header {
 
 .header-nav {
     list-style-type: none;
+    margin: 0 0 0 30px;
 }
 
 .header-nav li {
@@ -90,24 +96,27 @@ header {
 
 .tools-dropdown {
     position: absolute; /* K* drop-down must be absolute */
-    display: none;  /* dflt display is none */
+    visibility: hidden; 
 
     border-radius: 5px;
-    padding: 24px;
+    padding: 24px 24px 0;
     background-color: white;
     width: 200px;
 
-   /*  opacity: 0; */
-    transform: translateY(0.7em) scale(0.99);
+    opacity: 0;
+    transform: translateY(-1.25rem) scale(0.99);
 
 }
 
 .header-nav-tools:hover .tools-dropdown {
-    display: block;  /* causes drop-down to appear */
+    visibility: visible; /* causes drop-down to appear */
+    
+    transition-property: transform opacity;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 
-    transition: transform ease 500ms;
-    /* opacity: 1; */
-    transform: scale(1) translateY(0);
+    transform: scale(1) translateY(-0.5rem);
+    opacity: 1;
 }
 
 .tools-dropdown a {
@@ -118,6 +127,9 @@ header {
     margin: 0 0 16px;
 }
 
+.tools-dropdown a:hover {
+    color: blue;
+}
 
 main {
     display: grid;
