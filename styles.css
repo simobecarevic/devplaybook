@@ -11,9 +11,11 @@ body {
 
 header {
     position: fixed;
+    top: 0; /* Must put this offset/position prop otherwise header will float once content added to <main> */
     z-index: 999;
     width: 100%;
     background-color: rgb(30, 31, 38);
+
 }
 
 .header-content {
@@ -42,6 +44,11 @@ header {
 .logo-title {
     color: white;
     font-size: 1.6rem;
+}
+
+.trademark {
+    font-size: 0.5rem;
+    color: white;
 }
 
 .header-nav {
@@ -137,14 +144,79 @@ header {
 }
 
 main {
-    display: grid;
-    grid-template-columns: 20% 20%;
-    justify-content: center;
+    
 }
 
 .pl-notes-col {
     background-color: aqua;
 }
+
+/* Home Sign Up Page */
+
+.homesignup {
+    margin: 64px 0 0;
+    background-image: url("images/universe2.jpg");
+    color: white;
+    height: 100vw;
+    background-size: cover;   
+}
+
+
+/* Comparison Tool Page */
+
+.comparison-tool-title {
+    margin: 96px 10% 48px;
+    color: white;
+    text-align: center;
+}
+
+.comparison-heading {
+    font-size: 1.5rem;
+}
+
+.pl-wns {
+    display: flex;
+    justify-content: center;
+}
+
+.pl-wn {
+    margin: 0 40px 0; 
+}
+
+.pl-dropdown-div {
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.pl-btn {
+    display: block;
+    padding: 8px;
+    margin: 0 auto;
+    border-radius: 7.5px;
+    font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.pl-dropdown-1, .pl-dropdown-2  {
+    /* display: none; */
+    position: absolute;
+    background: white;
+    z-index: 999;
+}
+
+.pl-btn-1:hover .pl-dropdown-1 {
+    display: block;
+}
+
+.pl-btn-2:hover .pl-dropdown-2 {
+    display: block;
+}
+
+/* Test Tool Page */
+
+
+/* Translate Tool Page */
+
+
 
 footer {
     background-image: linear-gradient(to top, rgb(30, 31, 38), rgba(0,0,0,0));
@@ -162,4 +234,5 @@ footer {
     font-size: 0.7rem;
     padding: 16px 0 8px;
 }
+
 
