@@ -6,7 +6,7 @@
 body {
     background-color: rgb(19, 20, 23);
     font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    
+    /* min-height: 100vh; */
 }
 
 header {
@@ -141,7 +141,20 @@ main {
     background-color: aqua;
 }
 
+footer {
+    background-color: rgb(30, 31, 38);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 .copyright {
-    color: white;
+    color: rgb(220, 220, 220);
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+    padding: 8px 0;
 }
 
