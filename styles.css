@@ -15,7 +15,6 @@ header {
     z-index: 999;
     width: 100%;
     background-color: rgb(30, 31, 38);
-
 }
 
 .header-content {
@@ -175,41 +174,67 @@ main {
 }
 
 .pl-wns {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: center; 
+    
 }
 
 .pl-wn {
     margin: 0 40px 0; 
+    display: grid;
+    grid-template-columns: 100%;
+    /* justify-content: center; */
 }
 
+
 .pl-dropdown-div {
-    margin: 0 auto 20px;
     position: relative;
+    margin: 0 auto 20px;
 }
 
 .pl-btn {
     display: block;
     padding: 8px;
-    margin: 0 auto;
     border-radius: 7.5px;
     font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 1rem;
 }
 
-.pl-dropdown-1, .pl-dropdown-2  {
-    /* display: none; */
+.pl-dropdown-1, .pl-dropdown-2 {
+    display: none;
     position: absolute;
-    background: white;
-    z-index: 999;
+    /* visibility: hidden; */
+    background-color: white;
+    width: 162px;
+    text-align: center;
 }
 
-.pl-btn-1:hover .pl-dropdown-1 {
+.pl-dropdown-1 a, .pl-dropdown-2 a {
     display: block;
+    text-decoration: none;
+    color: black;
+    padding: 8px;
+    border-radius: 7.5px;
+    font-size: 1rem;
+    
 }
 
-.pl-btn-2:hover .pl-dropdown-2 {
+
+.pl-dropdown-div:hover .pl-dropdown-1 {
     display: block;
+    /* visibility: visible;  */
 }
+
+.pl-dropdown-div:hover .pl-dropdown-2 {
+    display: block;
+    /* visibility: visible;  */
+}
+
+.pl-btn-1:hover {
+    
+}
+
 
 /* Test Tool Page */
 
