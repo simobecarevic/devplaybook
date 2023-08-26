@@ -195,19 +195,36 @@ main {
 
 .pl-btn {
     display: block;
-    padding: 8px;
+    padding: 10px;
     border-radius: 7.5px;
-    font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    
 }
+
+
+/* Animation for PL buttons' border; inspired by CodePen */
+
+.pl-btn::before {
+    content: "";
+    height: 200%;
+    width: 200%;
+    background-color: (115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b);
+}
+
 
 .pl-dropdown-1, .pl-dropdown-2 {
     display: none;
     position: absolute;
     /* visibility: hidden; */
     background-color: white;
-    width: 162px;
+    width: 155.68px;
     text-align: center;
+    /* transform: translateY(-10.5px); 
+    padding-top: 10px; */
+    border-radius: 0 0 7.5px 7.5px;
 }
 
 .pl-dropdown-1 a, .pl-dropdown-2 a {
@@ -217,24 +234,44 @@ main {
     padding: 8px;
     border-radius: 7.5px;
     font-size: 1rem;
-    
 }
 
+
+.pl-dropdown-1 a:hover, .pl-dropdown-2 a:hover {
+    color: blue;
+    font-size: 1.1rem;
+} 
 
 .pl-dropdown-div:hover .pl-dropdown-1 {
     display: block;
     /* visibility: visible;  */
 }
 
+
 .pl-dropdown-div:hover .pl-dropdown-2 {
     display: block;
     /* visibility: visible;  */
 }
 
+/* On Hover, Make buttons bottom corners sharp to be continuous with drop down menus sharp top corners */
+.pl-dropdown-div:hover .pl-btn-1 {
+    border-radius: 7.5px 7.5px 0 0;
+} 
+
+.pl-dropdown-div:hover .pl-btn-2 {
+    border-radius: 7.5px 7.5px 0 0;
+} 
+
 .pl-btn-1:hover {
     
 }
 
+.pl-syn-wn {
+    background-color: rgb(30, 31, 38);
+    width: 100%;
+    min-height: 200px;
+    border-radius: 5px;
+}
 
 /* Test Tool Page */
 
