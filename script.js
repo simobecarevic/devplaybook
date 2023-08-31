@@ -5,6 +5,8 @@
 
 document.getElementById()
 document.querySelector()  //can invoke on ref to any el & will search descendents; need to incl selector symbol "." if Cl, "#" if ID
+.querySelectorALL() // returns multiple
+
 
 //also...
 myElements = document.getElementsByTagName("p"); // Multiple Els
@@ -30,7 +32,7 @@ document.body.appendChild(newsBanner);
 element.removeChild() //  passing in the child node (’ e.g. ref to child node, e.g. received from .getElementById') as the argument (’not selector/cl/id of child node, but child Nd itself’)
 
 element.style // access or set the CSS style rules of an element. To do so, values are assigned to the attributes of element.style
-// setting the backgroundColor attribute of the style property to blue, the CSS property background-color becomes blue. if the CSS property contains a hyphen, such as font-family or background-color, Camel Case notation is used in Javascript for the attribute name. No semi-colon inside str
+// Setting the backgroundColor attribute of the style property to blue, the CSS property background-color becomes blue. If the CSS property contains a hyphen, such as font-family or background-color, Camel Case notation is used in Javascript for the attribute name. No semi-colon inside str
 
 let blueElement = document.getElementById('colorful-element');
 blueElement.style.backgroundColor = 'blue';

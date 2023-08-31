@@ -54,22 +54,25 @@
                 Programming Language Comparison Tool
             </h1>
         </div>
+        
         <div class="pl-wns">
             <div class="language1 pl-wn">
                 
                 <div class="pl-dropdown-div">
-                    <button class="pl-btn-1 pl-btn">
-                        Choose a Language
-                    </button>
+                    <div id="pl-1-div">
+                        <!-- <button id="pl-1" class="pl-btn-1 pl-btn">
+                            Choose a Language
+                        </button> -->
+                    </div>
                     <div class="pl-dropdown-1">
-                        <a href="">JavaScript</a>
-                        <a href="">Python</a>
-                        <a href="">Java</a>
+                        <a id="js-btn-pl1" href="">JavaScript</a>
+                        <a id="py-btn-pl1"  href="">Python</a>
+                        <a id="j-btn-pl1"  href="">Java</a>
                     </div>
                 </div>
             
                 <div class="pl-syn-wn pl-syn-wn-1">
-                    
+            
                 </div>
             </div>
             <div class="language2 pl-wn">
@@ -89,6 +92,7 @@
                 </div>
             </div>
         </div>
+    
         <div class="syn-ftr-menus-wn">
             <h1 class="syn-ftr-heading">Syntax Features to Compare</h1>
             <div class="syn-ftr-menus">
@@ -131,10 +135,10 @@
                  -->
                 
                  <div class="syn-ftr-menu basic-syn">
-                    <button class="syn-cat-btn basic-syn-btn">
+                    <button class=" basic-syn-btn">
                         Basics
                     </button>
-                    <div class="syn-cat-menu">
+                    <div class="syn-dropdown-menu basic-dropdown">
                         <button class="comments">Comments</button>
                         <button class="a-operators">Arithmetic Operators</button>
                         <button class="l-operators">Logical Operators</button>
@@ -147,7 +151,7 @@
                     <button class="generalization">
                         Encapsulation & Generalization
                     </button>
-                    <div class="syn-cat-menu">
+                    <div class="syn-dropdown-menu gen-dropdown">
                         <button class="variables">Variables</button>
                         <button class="functions">Functions</button>
                         <button class="function-shorthand">Function Shorthand</button>
@@ -159,7 +163,7 @@
                     <button class="control-flow">
                         Control Flow
                     </button>
-                    <div class="syn-cat-menu">
+                    <div class="syn-dropdown-menu control-flow-dropdown">
                         <button class="c-stmts">Basic Conditional Statements</button>
                         <button class="m-stmts">Matching Conditional Statements</button>
                         <button class="for-loop">For Loop</button>
@@ -172,7 +176,7 @@
                     <button class="oop">
                         OOP
                     </button>
-                    <div class="syn-cat-menu">
+                    <div class="syn-dropdown-menu oop-dropdown">
                         <button class="objects">Objects</button>
                         <button class="classes">Classes</button>
                         <button class="inheritance">Inheritance</button>
@@ -183,7 +187,7 @@
                     <button class="modularity">
                         Modularity & I/O
                     </button>
-                    <div class="syn-cat-menu">
+                    <div class="syn-dropdown-menu modularity-dropdown">
                         <button class="importing">Importing</button>
                         <button class="exporting">Exporting</button>
                         <button class="user-input">User Input</button>
@@ -198,7 +202,7 @@
     <footer>
         <p class="copyright">©2023 Simo Becarevic</p>
     </footer>
-    
+    <script src="compare.js"></script>
 </body>
 
 </html>

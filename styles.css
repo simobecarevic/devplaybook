@@ -6,7 +6,8 @@
 body {
     background-color: rgb(19, 20, 23);
     font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    /* min-height: 100vh; */
+    position: relative;
+    min-height: 100vh;
 }
 
 header {
@@ -274,6 +275,10 @@ main {
     border-radius: 7.5px 7.5px 0 0;
 } 
 
+.pl-btn {
+    min-width: 155.68px;
+}
+
 .pl-btn-1:hover {
     
 }
@@ -291,6 +296,7 @@ main {
     width: 80%;
     text-align: center;
     margin: 40px auto 0;
+    padding: 0 0 40px;
 }
 
 .syn-ftr-heading {
@@ -307,16 +313,30 @@ main {
 
 .syn-ftr-menu {
     padding: 0 3%;
+
+}
+
+.syn-ftr-menu > button {
+    height: 46px;
 }
 
 .syn-ftr-menus button {
     width: 120px;
     padding: 5px;
+    font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-.syn-cat-menu button {
+.syn-dropdown-menu button {
     display: block;
+    min-height: 46px;
 }
+
+.basic-dropdown {
+    /* transform: translateY(-230px); */
+    
+}
+
+
 
 
 /* TEST TOOL Page */
