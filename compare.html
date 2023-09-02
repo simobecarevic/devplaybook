@@ -33,15 +33,15 @@
                 </li>
                 <li class="header-nav-tools">
                     <button class="header-nav-tools-btn">
-                        Tools 
+                        Study Tools 
                         <svg class="nav-option-menu-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 10L12 15L17 10" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                     <div class="tools-dropdown">
-                        <a href="compare.html">Programming Language Comparison Tool</a>
-                        <a href="test.html">Programming Language Test Tool</a>
-                        <a id="last-tool" href="translate.html">Programming Language Translation Tool</a>
+                        <a href="compare.html">Programming Language Comparison</a>
+                        <a href="test.html">Programming Language Test</a>
+                        <a id="last-tool" href="translate.html">Programming Language Translation</a>
                     </div>
                 </li>
             </ul>
@@ -78,13 +78,15 @@
             <div class="language2 pl-wn">
                 
                 <div class="pl-dropdown-div">
-                    <button class="pl-btn-2 pl-btn">
+                    <div id="pl-2-div">
+                        <!-- <button id="pl-2" class="pl-btn-2 pl-btn">
                         Choose a Language
-                    </button>
+                        </button> -->
+                    </div>
                     <div class="pl-dropdown-2">
-                        <a href="">JavaScript</a>
-                        <a href="">Python</a>
-                        <a href="">Java</a>
+                        <a id="j-btn-pl2" href="">JavaScript</a>
+                        <a id="js-btn-pl2" href="">Python</a>
+                        <a id="py-btn-pl2" href="">Java</a>
                     </div>
                 </div>
                 <div class="pl-syn-wn pl-syn-wn-2">
@@ -134,33 +136,31 @@
                     
                  -->
                 
-                 <div class="syn-ftr-menu basic-syn">
-                    <button class=" basic-syn-btn">
+                <div class="syn-ftr-menu basic-syn">
+                    <button class="basic-syn-btn cat-btn">
                         Basics
                     </button>
                     <div class="syn-dropdown-menu basic-dropdown">
-                        <button class="comments">Comments</button>
-                        <button class="a-operators">Arithmetic Operators</button>
-                        <button class="l-operators">Logical Operators</button>
-                        <button class="data-types">Data Types</button>
-                        <button class="data-conversion">Data Conversion</button>
+                        <button class="basic-btn">Comments</button>
+                        <button class="basic-btn">Arithmetic Operators</button>
+                        <button class="basic-btn">Logical Operators</button>
+                        <button class="basic-btn">Data Types</button>
+                        <button class="basic-btn last-opxn">Data Conversion</button>
                     </div>
                 </div>
-                
                 <div class="syn-ftr-menu gen-syn">
-                    <button class="generalization">
+                    <button class="gen-syn-btn cat-btn">
                         Encapsulation & Generalization
                     </button>
                     <div class="syn-dropdown-menu gen-dropdown">
                         <button class="variables">Variables</button>
                         <button class="functions">Functions</button>
                         <button class="function-shorthand">Function Shorthand</button>
-                        <button class="scope">Scope</button>
+                        <button class="scope last-opxn">Scope</button>
                     </div>
                 </div>
-
                 <div class="syn-ftr-menu control-flow-syn">
-                    <button class="control-flow">
+                    <button class="control-flow-syn-btn cat-btn">
                         Control Flow
                     </button>
                     <div class="syn-dropdown-menu control-flow-dropdown">
@@ -168,23 +168,21 @@
                         <button class="m-stmts">Matching Conditional Statements</button>
                         <button class="for-loop">For Loop</button>
                         <button class="while-loop">While Loop</button>
-                        <button class="error-handling">Error Handling</button>
+                        <button class="error-handling last-opxn">Error Handling</button>
                     </div>
                 </div>  
-                
                 <div class="syn-ftr-menu oop-syn">
-                    <button class="oop">
+                    <button class="oop-syn-btn cat-btn">
                         OOP
                     </button>
                     <div class="syn-dropdown-menu oop-dropdown">
                         <button class="objects">Objects</button>
                         <button class="classes">Classes</button>
-                        <button class="inheritance">Inheritance</button>
+                        <button class="inheritance last-opxn">Inheritance</button>
                     </div>
                 </div>
-
                 <div class="syn-ftr-menu modularity-syn">
-                    <button class="modularity">
+                    <button class="modularity-syn-btn cat-btn">
                         Modularity & I/O
                     </button>
                     <div class="syn-dropdown-menu modularity-dropdown">
@@ -192,7 +190,7 @@
                         <button class="exporting">Exporting</button>
                         <button class="user-input">User Input</button>
                         <button class="output">Output</button>
-                        <button class="async">Asynchronous</button>
+                        <button class="async last-opxn">Asynchronous</button>
                     </div>
                 </div>
 

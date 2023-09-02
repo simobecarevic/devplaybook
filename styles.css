@@ -287,7 +287,7 @@ main {
     background-color: rgb(30, 31, 38);
     width: 100%;
     min-height: 200px;
-    border-radius: 5px;
+    border-radius: 7.5px;
 }
 
 /* Syntax Feature Menus Section */
@@ -296,7 +296,7 @@ main {
     width: 80%;
     text-align: center;
     margin: 40px auto 0;
-    padding: 0 0 40px;
+    padding: 0 0 80px;
 }
 
 .syn-ftr-heading {
@@ -316,14 +316,21 @@ main {
 
 }
 
-.syn-ftr-menu > button {
+.cat-btn {
     height: 46px;
+    border-radius: 7.5px;
+}
+
+.cat-btn:hover {
+    color: skyblue;
 }
 
 .syn-ftr-menus button {
     width: 120px;
     padding: 5px;
     font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    /* border-radius: 7.5px; */
+    border: 1px solid white;
 }
 
 .syn-dropdown-menu button {
@@ -331,9 +338,38 @@ main {
     min-height: 46px;
 }
 
-.basic-dropdown {
-    /* transform: translateY(-230px); */
-    
+.syn-dropdown-menu {
+    /* display: none; */
+}
+
+.last-opxn {
+    border-radius: 0 0 7.5px 7.5px;
+}
+
+/* Below Styles are the initial position for the animation of the syn-ftr menus */
+.syn-dropdown-menu {
+    overflow: hidden;
+}
+.basic-btn {
+    transform: translateY(-230px);
+    transition: transform ease 500ms;
+}
+.gen-dropdown > button {
+    transform: translateY(-184px)
+}
+.control-flow-dropdown > button {
+    transform: translateY(-244px)
+}
+.oop-dropdown > button {
+    transform: translateY(-138px)
+}
+.modularity-dropdown > button {
+    transform: translateY(-230px)
+}
+
+.showButton {
+    transition: transform ease 500ms;
+    transform: translateY(0);
 }
 
 
