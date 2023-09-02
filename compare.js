@@ -11,9 +11,9 @@ var js_lg2 = document.getElementById("js-btn-pl2");
 var py_lg2 = document.getElementById("py-btn-pl2");
 var j_lg2 = document.getElementById("j-btn-pl2");
 
-console.log(js_lg1);
-console.log(py_lg1);
-console.log(j_lg1);
+// console.log(js_lg1);
+// console.log(py_lg1);
+// console.log(j_lg1);
 
 
 
@@ -80,7 +80,7 @@ var modularity_syn_btn = document.querySelector(".modularity-syn-btn");
 
 var arrOfSynMenuBtns = [basic_syn_btn, gen_syn_btn, control_flow_syn_btn, oop_syn_btn, modularity_syn_btn];
 
-console.log(basic_syn_btn, gen_syn_btn, control_flow_syn_btn, oop_syn_btn, modularity_syn_btn);
+// console.log(basic_syn_btn, gen_syn_btn, control_flow_syn_btn, oop_syn_btn, modularity_syn_btn);
 
 // Create a store of state of each menu, whether it is "on" or not, so can toggle this
 const synMenuState = {
@@ -97,9 +97,10 @@ function toggleDropDown(e) {
     // Select the menu button, and the next-sibling drop-down menu for the menu button
     let menu_btn = e.target;
     let menuToToggle = menu_btn.nextElementSibling; // K* this is K JS DOM attr
-    console.log(menu_btn);
-    console.log(menuToToggle);
-    /* //Below Code was not needed, don't need to know state of the Menu, whether on or off, bc TOGGLING regardless
+    // console.log(menu_btn);
+    // console.log(menuToToggle);
+    /* 
+    //Below Code was not needed, don't need to know state of the Menu, whether on or off, bc TOGGLING regardless
 
     // Get state of the drop-down menu, based on what button was pressed
     let menuOn, distToTranslate;
@@ -128,21 +129,23 @@ function toggleDropDown(e) {
     }
     else {
 
-    } */
+    } 
+    */
 
     // For every Btn in the sibling drop down menu, toggle the "showButton" class, which will transition-transform the buttons into place
     for (let btn of menuToToggle.children) {  // K* .children
-        console.log(btn);
+        // console.log(btn);
         btn.classList.toggle("showButton");
     }
     
+    // console.log(menu_btn.classList);
     // Make the Menu-Btn's bottom border-radi sharp to be continuous with drop down below it; but this will need to need to know a sense of the STATE
     // Q* Try and see if can instead TOGGLE a CLASS to the menu button, than will TRANSITION the border-radius, particarally when closing the drop down
     if (menuToToggle.firstElementChild.classList.contains("showButton")) {
-        menu_btn.style.borderRadius = "7.5px 7.5px 0 0";
+        menu_btn.classList.add("cat-btn-open");
     }
     else {
-        menu_btn.style.borderRadius = "7.5px";
+        menu_btn.classList.remove("cat-btn-open");
     }
 
 }

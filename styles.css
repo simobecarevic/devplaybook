@@ -319,6 +319,12 @@ main {
 .cat-btn {
     height: 46px;
     border-radius: 7.5px;
+    transition: border-radius 100ms linear 190ms;
+}
+
+.cat-btn-open {
+    border-radius: 7.5px 7.5px 0 0;
+    transition: border-radius 0ms linear;
 }
 
 .cat-btn:hover {
@@ -350,25 +356,34 @@ main {
 .syn-dropdown-menu {
     overflow: hidden;
 }
+
 .basic-btn {
     transform: translateY(-230px);
-    transition: transform ease 500ms;
+    transition: transform ease 200ms;
 }
-.gen-dropdown > button {
-    transform: translateY(-184px)
+
+.gen-btn {
+    transform: translateY(-184px);
+    transition: transform ease 200ms;
 }
-.control-flow-dropdown > button {
-    transform: translateY(-244px)
+
+.cf-btn {
+    transform: translateY(-244px);
+    transition: transform ease 200ms;
 }
-.oop-dropdown > button {
-    transform: translateY(-138px)
+
+.oop-btn {
+    transform: translateY(-138px);
+    transition: transform ease 200ms;
 }
-.modularity-dropdown > button {
-    transform: translateY(-230px)
+
+.mod-btn {
+    transform: translateY(-230px);
+    transition: transform ease 200ms;
 }
 
 .showButton {
-    transition: transform ease 500ms;
+    transition: transform ease 200ms;
     transform: translateY(0);
 }
 
