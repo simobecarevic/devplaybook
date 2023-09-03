@@ -16,15 +16,15 @@ var j_lg2 = document.getElementById("j-btn-pl2");
 // console.log(j_lg1);
 
 
-
 // Create the PL1 Dropdown menu Button w default text content
 var pl1_btn =  document.createElement("button")
 pl1_btn.id = "pl-1";
 pl1_btn.classList.add("pl-btn-1"); 
 pl1_btn.classList.add("pl-btn"); 
 pl1_btn.innerHTML = "Choose a Language"
-// Add the PL1 menu button to the HTML F
+// Select the PL 1 menu container
 var pl1_btn_div = document.getElementById("pl-1-div");
+// Add the PL1 menu button to the HTML F
 pl1_btn_div.appendChild(pl1_btn);
 
 // Create the PL2 Dropdown menu Button w default text content
@@ -33,13 +33,13 @@ pl2_btn.id = "pl-2";
 pl2_btn.classList.add("pl-btn-2"); 
 pl2_btn.classList.add("pl-btn"); 
 pl2_btn.innerHTML = "Choose a Language";
-// Add the PL2 menu button to the HTML F
+// Select the PL 2 menu container
 var pl2_btn_div = document.getElementById("pl-2-div");
+// Add the PL2 menu button to the HTML F
 pl2_btn_div.appendChild(pl2_btn);
 
 
 // Create a store of what PLs are currently selected by user from drop-down menus
-
 const pLangs = {
     pl1: "",
     pl2: "",
@@ -47,26 +47,94 @@ const pLangs = {
 }
 
 
-// Create Event Handler for PL1 menu choices, on click to change PL1 button text
-// Ensure it updates the pLangs object
+// Create Event Handler for PL1 menu buttons, on click, that 
+    // Change PL1 button text
+    // Updates the pLangs object
+    // Renders corres codeBoxes if codeDisplayed (exists, i.e. obj as KVPs), i.e. syn ftr menu buttons are selected
+    // If there are codeBoxes already in the PL-wn (bc a PL was chosen before), remove them
 function update_btn1(e) { 
+    e.preventDefault();
+
+    // The button pressed selects for the PL 1
     var pl1 = e.target.innerHTML;
+    // Update the button heading
     pl1_btn.innerHTML = pl1; 
     pl1_btn_div.appendChild(pl1_btn);
+
+    // Update the pLangs obj
     pLangs.pl1 = pl1;
     console.log(pLangs.pl1);
-    e.preventDefault();
+
+    // Get the corres PL-SYN-WN, will need it for next to operations
+    let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
+
+    // Check it the corres PL-syn-wn has any codeBoxes (child Els) in it, and if so, remove them
+    if (pl_syn_wn1.children.length !== 0) {
+        pl_syn_wn1.innerHTML = "";
+    }
+    
+    // If codeDisplayed has KVPs, i.e. Syn FTR menu buttons selected, for each synFTR/codeDisplayed, create a CodeBox and add it to the corrs PL-syn-wn
+    if (Object.keys(codeDisplayed).length !== 0) {
+        for (let synFTR in codeDisplayed) {
+            let pl1_syn = pLangsSyn[pl1]; 
+            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
+            let pl1_code = pl1_syn[synFTR];
+                
+            // Create codeBoxes and put the pl Code in each
+            let codeBox1 = document.createElement("div")
+            codeBox1.classList.add("codeBox");
+            // Give the codebox an Id so that it can be removed easily
+            codeBox1.id = synFTR + "1";
+            codeBox1.innerHTML = pl1_code;
+            
+            // Append codeBox to the corres pl-syn-wn
+            pl_syn_wn1.appendChild(codeBox1);
+        }
+    }
+    
 }; 
 
 // Create Event Handler for PL2 menu choices, on click to change PL2 button text
 // Ensure it updates the pLangs object
 function update_btn2(e) { 
+    e.preventDefault();
+
+    // The button pressed selects for the PL 2
     var pl2 = e.target.innerHTML;
+    // Update the button heading
     pl2_btn.innerHTML = pl2; 
     pl2_btn_div.appendChild(pl2_btn);
+    // Update the pLangs obj
     pLangs.pl2 = pl2;
     console.log(pLangs.pl2);
-    e.preventDefault();
+    
+    // Get the corres PL-SYN-WN, will need it for next to operations
+    let pl_syn_wn2 = document.querySelector(".pl-syn-wn-2");
+
+    // Check it the corres PL-syn-wn has any codeBoxes (child Els) in it, and if so, remove them
+    if (pl_syn_wn2.children.length !==0 ) {
+        pl_syn_wn2.innerHTML = "";
+    }
+
+    // If codeDisplayed has KVPs, i.e. Syn FTR menu buttons selected, for each synFTR/codeDisplayed, create a CodeBox and add it to the corrs PL-syn-wn
+    if (Object.keys(codeDisplayed).length !== 0) {
+        for (let synFTR in codeDisplayed) {
+            let pl2_syn = pLangsSyn[pl2]; 
+            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
+            let pl2_code = pl2_syn[synFTR];
+                
+            // Create codeBoxes and put the pl Code in each
+            let codeBox2 = document.createElement("div")
+            codeBox2.classList.add("codeBox");
+            // Give the codebox an Id so that it can be removed easily
+            codeBox2.id = synFTR + "2";
+            codeBox2.innerHTML = pl2_code;
+            
+            // Append codeBox to the corres pl-syn-wn
+            pl_syn_wn2.appendChild(codeBox2);
+        }
+    }
+
 }; 
 
 
@@ -115,8 +183,8 @@ function toggleDropDown(e) {
     let menu_btn = e.target;
     let menuToToggle = menu_btn.nextElementSibling; // K* this is K JS DOM attr
 
-
     /* 
+
     //Below Code was not needed, don't need to know state of the Menu, whether on or off, bc TOGGLING regardless
 
     // Get state of the drop-down menu, based on what button was pressed
@@ -174,6 +242,9 @@ for (let btn of arrOfSynMenuBtns) {
 }
 
 
+
+
+
 /* SYN FTR COMPARISON FUNCTIONALITY; BUTTON SELECTION, & RENDERING OF SYN COMPARISON IN PL WINDOWS */
 
 // Create an obj that will store all the syntax for all the possible languages we can compare
@@ -181,9 +252,9 @@ for (let btn of arrOfSynMenuBtns) {
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: "test1",
-        "Arithmetic Operators": "test2",
-        "Logical Operators": "test3", 
+        Comments: "js1",
+        "Arithmetic Operators": "js2",
+        "Logical Operators": "js3", 
         "Data Types": "",
         "Data Conversion": "",
         /* Encap & Gen */
@@ -210,9 +281,9 @@ const pLangsSyn = {
     },
     Python : {
         /* Basics */
-        Comments: "",
-        "Arithmetic Operators": "",
-        "Logical Operators": "", 
+        Comments: "py1",
+        "Arithmetic Operators": "py2",
+        "Logical Operators": "py3", 
         "Data Types": "",
         "Data Conversion": "",
         /* Encap & Gen */
@@ -239,9 +310,9 @@ const pLangsSyn = {
     },
     "Java" : {
         /* Basics */
-        Comments: "",
-        "Arithmetic Operators": "",
-        "Logical Operators": "", 
+        Comments: "java1",
+        "Arithmetic Operators": "java2",
+        "Logical Operators": "java3", 
         "Data Types": "",
         "Data Conversion": "",
         /* Encap & Gen */
@@ -285,7 +356,33 @@ const codeDisplayed = {};
 // FN that Produces Code-Boxes and add them to the Pl-Syn-Wn 
     // Will use plSyn global Obj, and pLangs global obj
 
+
+/* Didn't end up creating a createCodeBox FN... too much complexity; just copy code from below toggleCodeBoxes and put in updateBtn Fn
+// Create a FN simply for creating a CodeBox, based on an input of the syntax FTR (i.e. the innerHTML of the Syn Ftr Buttons); this nested FN will be called in toggleCodeBoxes, but also in the above updateBtn() FN (conditional on synFTRs already being selected)
+
+function createCodeBox(synFTR, pl, plWN) {
+    // Select for the PL's Syn Obj in PLs Syn obj
+    let pl_syn = pLangsSyn[pl]; 
+    // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
+    let pl_code = pl_syn[synFTR];
+
+    // Create codeBoxes and put the pl Code in each
+    let codeBox = document.createElement("div")
+    codeBox.classList.add("codeBox");
+    // Give the codebox an Id so that it can be removed easily
+    codeBox.id = synFTR + plWN;
+    codeBox.innerHTML = pl_code;
+    
+    // Append codeBox to the corres pl-syn-wn
+    pl_syn_wn1.appendChild(codeBox1);
+    
+}
+ */
+
 function toggleCodeBoxes(ev) {
+    
+    // Extract the SYN FTR you are toggling
+    const synFTR = ev.target.innerHTML;
 
     // Get the PL Syn Wn
     let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
@@ -296,25 +393,25 @@ function toggleCodeBoxes(ev) {
     let pl2 = pLangs.pl2;
 
     // Check if codeBoxes already added for this Syn-Ftr
-    if (codeDisplayed[ev.target.innerHTML]) {
+    if (codeDisplayed[synFTR]) {
 
         // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is
         if (pl1) {
             // Get the codeBox Els that are already in the wns
-            let codeBox1 = pl_syn_wn1.children.namedItem(ev.target.innerHTML + "1");
+            let codeBox1 = pl_syn_wn1.children.namedItem(synFTR + "1");
             // Remove the codeBoxes 
             pl_syn_wn1.removeChild(codeBox1);
         }
 
         if (pl2) {   
             // Get the codeBox Els that are already in the wns   
-            let codeBox2 = pl_syn_wn2.children.namedItem(ev.target.innerHTML + "2");
+            let codeBox2 = pl_syn_wn2.children.namedItem(synFTR + "2");
             // Remove the codeBoxes 
             pl_syn_wn2.removeChild(codeBox2);
         }  
         
         if (pl1 || pl2) {
-            delete codeDisplayed[ev.target.innerHTML];
+            delete codeDisplayed[synFTR];
         }
         
     }
@@ -327,23 +424,23 @@ function toggleCodeBoxes(ev) {
             return;
         }
 
-        // If either of the PL is selected, add the Syn Ftr (i.e. ev.target.innerHTML) to the codeDisplayed object
+        // If either of the PL is selected, add the Syn Ftr (i.e. synFTR) to the codeDisplayed object
         if (pl1 || pl2) {
-            codeDisplayed[ev.target.innerHTML] = true;
+            codeDisplayed[synFTR] = true;
         }
 
         // Need to split the logic for each PL, PL-wn, in two conditional statements, in case only one PL is selected
         if (pl1) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
-            // Extract the specifc syn-code based on the Button clicked, i.e. the ev.target.innerHTML - use it as index
-            let pl1_code = pl1_syn[ev.target.innerHTML];
+            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
+            let pl1_code = pl1_syn[synFTR];
         
             // Create codeBoxes and put the pl Code in each
             let codeBox1 = document.createElement("div")
             codeBox1.classList.add("codeBox");
             // Give the codebox an Id so that it can be removed easily
-            codeBox1.id = ev.target.innerHTML + "1";
+            codeBox1.id = synFTR + "1";
             codeBox1.innerHTML = pl1_code;
             
             // Append codeBox to the corres pl-syn-wn
@@ -354,15 +451,15 @@ function toggleCodeBoxes(ev) {
         if (pl2) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl2_syn = pLangsSyn[pl2];
-            // Extract the specifc syn-code based on the Button clicked, i.e. the ev.target.innerHTML - use it as index
-            let pl2_code = pl2_syn[ev.target.innerHTML];
+            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
+            let pl2_code = pl2_syn[synFTR];
 
             // Create codeBoxes and put the pl Code in each
             let codeBox2 = document.createElement("div")
             codeBox2.classList.add("codeBox");
 
             // Give the codebox an Id so that it can be removed easily
-            codeBox2.id = ev.target.innerHTML + "2";
+            codeBox2.id = synFTR + "2";
             codeBox2.innerHTML = pl2_code;
 
             // Append codeBox to the corres pl-syn-wn
