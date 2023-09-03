@@ -181,9 +181,9 @@ for (let btn of arrOfSynMenuBtns) {
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: "",
-        "Arithmetic Operators": "",
-        "Logical Operators": "", 
+        Comments: "test1",
+        "Arithmetic Operators": "test2",
+        "Logical Operators": "test3", 
         "Data Types": "",
         "Data Conversion": "",
         /* Encap & Gen */
@@ -291,26 +291,35 @@ function toggleCodeBoxes(ev) {
     let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
     let pl_syn_wn2 = document.querySelector(".pl-syn-wn-2");
 
+    // Figure out which PLs were selected
+    let pl1 = pLangs.pl1; // VRs in JS are all all function scoped, so I can re-use this VR name
+    let pl2 = pLangs.pl2;
+
     // Check if codeBoxes already added for this Syn-Ftr
     if (codeDisplayed[ev.target.innerHTML]) {
-        // Get the codeBox Els that are already in the wns
-        let codeBox1 = pl_syn_wn1.children.namedItem(ev.target.innerHTML + "1");
-        let codeBox2 = pl_syn_wn2.children.namedItem(ev.target.innerHTML + "2");
-        // Remove the codeBoxes 
-        pl_syn_wn1.removeChild(codeBox1);
-        pl_syn_wn2.removeChild(codeBox2);
+
+        // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is
+        if (pl1) {
+            // Get the codeBox Els that are already in the wns
+            let codeBox1 = pl_syn_wn1.children.namedItem(ev.target.innerHTML + "1");
+            // Remove the codeBoxes 
+            pl_syn_wn1.removeChild(codeBox1);
+        }
+
+        if (pl2) {   
+            // Get the codeBox Els that are already in the wns   
+            let codeBox2 = pl_syn_wn2.children.namedItem(ev.target.innerHTML + "2");
+            // Remove the codeBoxes 
+            pl_syn_wn2.removeChild(codeBox2);
+        }  
         
-        delete codeDisplayed[ev.target.innerHTML];
+        if (pl1 || pl2) {
+            delete codeDisplayed[ev.target.innerHTML];
+        }
+        
     }
 
     else {
-
-        // Figure out which PLs were selected
-        let pl1 = pLangs.pl1; // VRs in JS are all all function scoped, so I can re-use this VR name
-        let pl2 = pLangs.pl2;
-
-        console.log(pl1);
-        console.log(pl2);
 
         // Check if either of these is "", empty str/False
         if (!(pl1 || pl2)) {
