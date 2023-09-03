@@ -185,7 +185,7 @@ main {
     margin: 0 40px 0; 
     display: grid;
     grid-template-columns: 100%;
-    /* justify-content: center; */
+    /* justify-content: center; This is default val, unnecessary */
 }
 
 
@@ -203,15 +203,6 @@ main {
     font-size: 0.9rem;
     border: none;
     
-}
-
-/* Animation for PL buttons' border; inspired by CodePen */
-
-.pl-btn::before {
-    content: "";
-    height: 200%;
-    width: 200%;
-    background-color: (115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b);
 }
 
 .pl-dropdown-1, .pl-dropdown-2 {
@@ -290,6 +281,17 @@ main {
     border-radius: 7.5px;
 }
 
+.codeBox {
+    background-color: black;
+    height: 50px;
+    width: 100%;
+    border-bottom: lime 0.5px solid;
+    color: white;
+    font-family: monaco;
+    font-size: 0.75rem;
+}
+
+
 /* Syntax Feature Menus Section */
 
 .syn-ftr-menus-wn {
@@ -313,7 +315,6 @@ main {
 
 .syn-ftr-menu {
     padding: 0 3%;
-
 }
 
 .cat-btn {
@@ -344,10 +345,6 @@ main {
     min-height: 46px;
 }
 
-.syn-dropdown-menu {
-    /* display: none; */
-}
-
 .last-opxn {
     border-radius: 0 0 7.5px 7.5px;
 }
@@ -355,6 +352,7 @@ main {
 /* Below Styles are the initial position for the animation of the syn-ftr menus */
 .syn-dropdown-menu {
     overflow: hidden;
+    
 }
 
 .basic-btn {
@@ -385,6 +383,21 @@ main {
 .showButton {
     transition: transform ease 200ms;
     transform: translateY(0);
+}
+
+.basic-btn:hover, .gen-btn:hover, .cf-btn:hover, .oop-btn:hover, .mod-btn:hover {
+    color: skyblue;
+    background-color:rgb(30, 31, 38);
+}
+
+.syn-btn-on {
+    color: skyblue;
+    background-color:rgb(30, 31, 38);
+}
+
+.syn-btn-on:hover {
+    color: skyblue;
+    background-color:rgb(30, 31, 38);
 }
 
 
