@@ -149,7 +149,6 @@ j_lg2.addEventListener("click", update_btn2);
 
 
 
-
 /* SYNTAX-FEATUREs-TO-COMPARE MENU, BUTTON Functionality */
 
 // Get all the Cat-Menu buttons
@@ -243,54 +242,80 @@ for (let btn of arrOfSynMenuBtns) {
 
 
 
-
-
 /* SYN FTR COMPARISON FUNCTIONALITY; BUTTON SELECTION, & RENDERING OF SYN COMPARISON IN PL WINDOWS */
 
 // Create an obj that will store all the syntax for all the possible languages we can compare
 
+/* 
+Syn Ftrs to potentially Add
+Assignment Operator & Keywords, or just "Assignment", under Encapsulization Generalization
+
+*/
+
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: "js1",
-        "Arithmetic Operators": "js2",
-        "Logical Operators": "js3", 
-        "Data Types": "",
-        "Data Conversion": "",
+        Comments: "// JavaScript single line comment <br />/* Javascript<br />multi-line comment */",
+
+        "Arithmetic Operators": "+ &nbsp;// Addition <br/> - &nbsp;// Subtraction <br/> * &nbsp;// Multiplication <br/> ** // Exponentation<br/> / &nbsp;// Division <br/> % &nbsp;// Modulus <br/> ++ // Increment <br/> -- // Decrement",
+
+        "Comparison Operators": "=== // Equal value and equal type <br/> == &nbsp;// Equal to (after type conversion if operands are different data types) <br/> !== // Not equal value nor equal type <br/> != &nbsp// Not equal (after type conversion if operands are different data types) <br/> > &nbsp&nbsp// Greater than <br/> < &nbsp&nbsp// Less than <br/> >= &nbsp// Greater than or equal to <br/> <= &nbsp// Less than or equal to", 
+
+        "Logical Operators": "&& // And <br/> || // Or <br/> ! &nbsp// Not",  
+        
+        "Data Types": "/* Primitive Data Types */ <br/> 1. Number: includes integers, floating-point, or scientific notation (append with \"e\") <br/>&emsp; 15 <br/>&emsp; 4.9 <br/>&emsp; 456e3 // === 456000 <br/> 2. String <br/>&emsp; \"hello world\" <br/> 3. Boolean <br/>&emsp; true <br/>&emsp; false <br/> 4. null: an assigned date type that represents no value. <br/>&emsp; let x = null; <br/> 5. undefined: represents a variable having not yet been assigned a value <br/>&emsp; let y; // y returns undefined <br/> 6. Symbol:  instances of this data type are unique & immutable; often used to add unique property keys to an object <br/>&emsp; let unique_key = Symbol(\"hello world\") <br/> 7. BigInt: used to represent big integer values that are too big to be represented by the Number data type (i.e. 16 digits & over). To create a BigInt, append n to the end of an integer or call BigInt() <br/>&emsp; let x = 1234567890123456789012345n; <br/>&emsp; let y = BigInt(1234567890123456789012345) <br/><br/> /* Compound Data Types */ <br/> 8. Object: key-value pairs of collection of data <br/>&emsp; let obj = {a: \"hello world\", \"key with spaces\": 450}",
+
         /* Encap & Gen */
-        Variables: "",
-        Functions: "",
-        "Functions Shorthand": "",
-        Scope: "",
+
+        "Assignment, Variables, Scope": "// Assignment operator <br/>&emsp; = <br/> 1. let : block scope, function scope, mutable, not hoisted <br/> &emsp; let x = \"hello world \" <br/> &emsp; let y; <br/> &emsp; y = 400 <br/> 2. const: block scope, function scope, immutable (must be defined on declaration), not hoisted <br/> &emsp; const x = 10; <br/> &emsp; const y = \"can't change this val\" <br/> 3. var : no block scope, function scope, mutable, hoisted <br/> &emsp; var x; <br/> &emsp; var y = 100; <br/> &emsp; y = \"one hundred\"",
+
+        Functions: "1. Regular Function <br/><br/> function functionName (pm1, pm2) { <br/> &emsp; /* function body */ <br/> } <br/><br/> 2. Anonymous Function : A function without a name; typically assigned to a variable or passed as an argument <br/><br/> function(pm1) { <br/>&emsp; /* function body */ <br/> } <br/> const nameOfFunction = function(pm2) { <br/>&emsp; /* function body */ <br/> } <br/> array.forEach(function(item) {console.log(item)})",
+
+        "Functions Shorthand": "1. Arrow Function shorthand for declaring anonymous functions <br/><br/> const functionOne = (pm1, pm2) => { <br/> &emsp; /* function body */} <br/><br/> 2. If there is one one parameter, parentheses can be dropped <br/><br/> const secondFunction = pm1 => { <br/> &emsp; /* function body */<br/>} <br/><br/> 3. If there is only one statement in the function body, curly braces can be dropped <br/><br/> const logParameter = pm => console.log(pm);",
+
         /* Control Flow */
-        "Conditional Statements": "",
-        "Matching Conditional": "",
+    
+        "Conditional Statements": "if (condition) { <br/> &emsp; /* code block executed if the condition is true */ <br/> } else { <br/> &emsp; /* code block executed if the condition is false */ <br/> } <br/><br/> // else if : specifies alternate condition if the first condition is false <br/> if (condition) { <br/> &emsp; /* block of code to be executed if the condition is true */ <br/> } else if { <br/> &emsp; /* code block executed if alternate condition is true */ <br/> } else { <br/> &emsp; /* code block executed if all conditions are false */ <br/> }",
+
+        "Matching Conditional": "1. Switch statement: evaluates an expression, compares this value against case values, executes statements after first case with matching value until a \"break\" statement is encountered <br/> &emsp; - If there is no matching case value, the (optional) default code block is executed <br/>&emsp; - omitting the \"break\" statement, will cause next case to be executed even if the evaluation does not match the case; no \"break\" needed in the last switch block because the switch construct breaks (ends) there <br/><br/>switch(expression) { <br/>&emsp; case x: <br/>&emsp;&emsp; // code block <br/>&emsp;&emsp; break; <br/>&emsp; case y: <br/>&emsp;&emsp; // code block <br/>&emsp;&emsp; break; <br/> &emsp; default: <br/>&emsp;&emsp; // code block <br/>}",
+
         "For Loop": "",
+
         "While Loop": "",
+
         "Error Handling": "",
+
         /* OOP */
+
         "Objects": "",
+
         "Classes": "",
+
         "Inheritance": "",
+
         /* Modulaity */ 
+
         Importing: "",
+
         Exporting: "", 
+
         "User Input": "",
+
         Output: "",
+
         Asynchronous: ""
     },
     Python : {
         /* Basics */
         Comments: "py1",
         "Arithmetic Operators": "py2",
-        "Logical Operators": "py3", 
+        "Comparison Operators": "py3", 
+        "Logical Operators": "py4",  
         "Data Types": "",
-        "Data Conversion": "",
         /* Encap & Gen */
-        Variables: "",
+        "Assignment, Variables, Scope": "",
         Functions: "",
         "Functions Shorthand": "",
-        Scope: "",
         /* Control Flow */
         "Conditional Statements": "",
         "Matching Conditional": "",
@@ -312,14 +337,13 @@ const pLangsSyn = {
         /* Basics */
         Comments: "java1",
         "Arithmetic Operators": "java2",
-        "Logical Operators": "java3", 
+        "Comparison Operators": "java3", 
+        "Logical Operators": "java4",  
         "Data Types": "",
-        "Data Conversion": "",
         /* Encap & Gen */
-        Variables: "",
+        "Assignment, Variables, Scope": "",
         Functions: "",
         "Functions Shorthand": "",
-        Scope: "",
         /* Control Flow */
         "Conditional Statements": "",
         "Matching Conditional": "",
@@ -348,14 +372,12 @@ const pLangs = {
 }
 */
 
-
 // Create an Obj that keeps state of which syn/codeBoxes are being displayed in the wn right; this is necessary bc pressing a menu button will Toggle the display, & this will be needed for the Toggle event-handler
 
 const codeDisplayed = {};
 
 // FN that Produces Code-Boxes and add them to the Pl-Syn-Wn 
     // Will use plSyn global Obj, and pLangs global obj
-
 
 /* Didn't end up creating a createCodeBox FN... too much complexity; just copy code from below toggleCodeBoxes and put in updateBtn Fn
 // Create a FN simply for creating a CodeBox, based on an input of the syntax FTR (i.e. the innerHTML of the Syn Ftr Buttons); this nested FN will be called in toggleCodeBoxes, but also in the above updateBtn() FN (conditional on synFTRs already being selected)
@@ -382,7 +404,7 @@ function createCodeBox(synFTR, pl, plWN) {
 function toggleCodeBoxes(ev) {
     
     // Extract the SYN FTR you are toggling
-    const synFTR = ev.target.innerHTML;
+    const synFTR = ev.target.innerHTML; 
 
     // Get the PL Syn Wn
     let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
@@ -395,7 +417,7 @@ function toggleCodeBoxes(ev) {
     // Check if codeBoxes already added for this Syn-Ftr
     if (codeDisplayed[synFTR]) {
 
-        // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is
+        // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
         if (pl1) {
             // Get the codeBox Els that are already in the wns
             let codeBox1 = pl_syn_wn1.children.namedItem(synFTR + "1");
@@ -404,12 +426,13 @@ function toggleCodeBoxes(ev) {
         }
 
         if (pl2) {   
-            // Get the codeBox Els that are already in the wns   
+            // Get the codeBox Els that are already in the WNs   
             let codeBox2 = pl_syn_wn2.children.namedItem(synFTR + "2");
             // Remove the codeBoxes 
             pl_syn_wn2.removeChild(codeBox2);
         }  
         
+        // If either of the PLs was selected, then delete the Syn-Ftr from the list of Syn FTRs; this line code go instead in if condxn blocks above
         if (pl1 || pl2) {
             delete codeDisplayed[synFTR];
         }
@@ -418,7 +441,7 @@ function toggleCodeBoxes(ev) {
 
     else {
 
-        // Check if either of these is "", empty str/False
+        // Check if either of these is "", empty Str/False
         if (!(pl1 || pl2)) {
             alert("Choose at least one Programming Language");
             return;
@@ -437,7 +460,7 @@ function toggleCodeBoxes(ev) {
             let pl1_code = pl1_syn[synFTR];
         
             // Create codeBoxes and put the pl Code in each
-            let codeBox1 = document.createElement("div")
+            let codeBox1 = document.createElement("div");
             codeBox1.classList.add("codeBox");
             // Give the codebox an Id so that it can be removed easily
             codeBox1.id = synFTR + "1";
@@ -455,7 +478,7 @@ function toggleCodeBoxes(ev) {
             let pl2_code = pl2_syn[synFTR];
 
             // Create codeBoxes and put the pl Code in each
-            let codeBox2 = document.createElement("div")
+            let codeBox2 = document.createElement("div");
             codeBox2.classList.add("codeBox");
 
             // Give the codebox an Id so that it can be removed easily

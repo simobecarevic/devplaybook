@@ -282,14 +282,16 @@ main {
 }
 
 .codeBox {
+    box-sizing: border-box;
     background-color: black;
-    height: 50px;
+    min-height: 50px;
     width: 100%;
     border-bottom: lime 0.5px solid;
     color: white;
-    font-family: monaco;
+    font-family: "Source Code Pro";
     font-size: 0.75rem;
     border-radius: 7.5px;
+    padding: 0.5rem;
 }
 
 
@@ -362,7 +364,7 @@ main {
 }
 
 .gen-btn {
-    transform: translateY(-184px);
+    transform: translateY(-138px);
     transition: transform ease 200ms;
 }
 
