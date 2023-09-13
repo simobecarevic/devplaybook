@@ -293,12 +293,55 @@ const pLangsSyn = {
 
         "Inheritance": "Child class is created using \"extends\" keyword. A child class constructor calls the parent class constructor using the super() method. </br></br> // Parent class </br> class ConstructionProject { </br> &emsp; constructor(info) { </br>&emsp;&emsp; this.buildDate = info.buildDate; </br>&emsp;&emsp; this.name = info.name; } </br> } </br> // Child class <br/> class House extends ConstructionProject { </br>&emsp; constructor(houseData) { </br>&emsp;&emsp; super(houseData); </br>&emsp;&emsp; this.designer = houseData.designer; } </br> } </br></br> const myHouse = new House({ designer: 'Da Vinci', name: 'Hello World Museum', buildDate: 2023});",
 
+        /* 
+        // FE Individ Rsrcs
+// Export 
+export const toggleHiddenElement = (domElement) => {...} // or 
+export {resourceToExportA, resourceToExportB, ...} 
+// Import 
+import {exportedResourceA, exportedResourceB} from './path/to/module.js' //or, avoiding name collisiong
+import {method as uniqueMdName} from 'mdu.js'
+
+// FE Entire Mdu 
+// Import 
+import importedResources from 'module.js'; // Vr name is Arb; Dropped Curly Braces Shorthand of: import { default as importedResources } from 'module.js';
+// Export
+// Obj containing Mdu rsrcs must 1st decl'd 
+const resources = {
+    valueA,
+    ...
+}
+export default resources; // Shorthand verxn of export { resources as default };
+
+// External Rsrc: Using Named and Default Exports at the same time: both will be imported in the same file.
+//module.js
+var x=2;
+const y=4;
+function fun() {
+   return "This a default export."
+}
+function square(x) {
+  return x * x;
+}
+export { fun as default, x, y, square };
+// Importing, can use any name for fun because it is a default export and curly braces for other named exports. 
+import anyname, {x, y, square} from './module.js';
+console.log(anyname()); //This is a default export.
+
+// DEFAULT Export INLINE: "useful to export only a single obj, FN, variable, or to have a fallback val for your MDU"
+export default function cube(x) {
+  return x * x * x;
+}
+        */
+        
         /* Modulaity */ 
 
         Importing: "",
 
         Exporting: "", 
 
+
+        
         "User Input": "",
 
         Output: "",
