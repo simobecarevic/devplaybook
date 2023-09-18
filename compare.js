@@ -263,7 +263,7 @@ Syn Ftrs to Potentially Add
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: '<script src="./gist/javascript/comments.js"></script>',
+        Comments: "https://gist.github.com/simobecarevic/a23a171b34261e2df8fd76b8bbb7b3b7.js",
            
         "Arithmetic Operators": "+ &nbsp;// Addition <br/> - &nbsp;// Subtraction <br/> * &nbsp;// Multiplication <br/> ** // Exponentation<br/> / &nbsp;// Division <br/> % &nbsp;// Modulus <br/> ++ // Increment <br/> -- // Decrement",
 
@@ -465,7 +465,7 @@ function toggleCodeBoxes(ev) {
 
     // Check if codeBoxes already added for this Syn-Ftr; if so, REMOVE them 
     if (codeDisplayed[synFTR]) {
-
+        
         // Check if each of PL1 and PL2 exist, i.e. they were SELECTED, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
         if (pl1) {
             // Get the codeBox Els that are already in the wns
@@ -506,28 +506,27 @@ function toggleCodeBoxes(ev) {
 
         // If a PL was selected for in PL1 menu...
         if (pl1) {
+
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
 
-
             // Extract the Gist code string based on the Button clicked, i.e. the synFTR - use it as index
-            let pl1_gist = pl1_syn[synFTR];
-        
-            // Create a unique id for the script element
-            let id1 = synFTR + "1"; 
-
-            // Insert a unique id to the <script> el of the Gist (so can remove accordingly)
-            let pl1_gist_id = pl1_gist.slice(0, 8) + `id="${id1}" ` + pl1_gist.slice(8);
+            let pl1_gist_url = pl1_syn[synFTR];
             
-            // Convert the string into DOM Nodes; bc this will turn it into 
-            let doc = new DOMParser().parseFromString(pl1_gist_id, 'text/html');
-            console.log(doc);
+            // Dynamically create a script element and set its source to your Gist URL
+            const scriptElement = document.createElement('script');
+            scriptElement.src = pl1_gist_url;
 
-            let script1 = doc.getElementById(id1);
-            console.log(script1);
+            // Create a unique id for the script element
+            scriptElement.id = synFTR + "1"; 
 
+            if(!document._write) document._write = document.write;
+            document.write = function (str) {
+                document.getElementById('pl-syn-wn-1').innerHTML += str;
+            };
             // Append codeBox to the corres pl-syn-wn
-            pl_syn_wn1.appendChild(script1);
+            pl_syn_wn1.appendChild(scriptElement);
+            if(scriptElement.complete) document.write = document._write;
 
             console.log(pl_syn_wn1);
         }
