@@ -284,6 +284,8 @@ main {
     overflow-anchor: none;
 }
 
+/* 
+Got rid of this method of posting Code
 .codeBox {
     box-sizing: border-box;
     background-color: black;
@@ -295,6 +297,11 @@ main {
     font-size: 0.75rem;
     border-radius: 7.5px;
     padding: 0.5rem;
+} 
+*/
+
+body .gist .gist-file {
+    margin: 0;
 }
 
 body .gist .gist-meta {
@@ -304,6 +311,8 @@ body .gist .gist-meta {
 body .gist .gist-data {
     border-radius: 6px;
 }
+
+
 
 /* Syntax Feature Menus Section */
 

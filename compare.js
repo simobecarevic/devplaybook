@@ -263,9 +263,9 @@ Syn Ftrs to Potentially Add
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: "https://gist.github.com/simobecarevic/a23a171b34261e2df8fd76b8bbb7b3b7.js",
+        Comments: "./gist/javascript/comments.js",
            
-        "Arithmetic Operators": "+ &nbsp;// Addition <br/> - &nbsp;// Subtraction <br/> * &nbsp;// Multiplication <br/> ** // Exponentation<br/> / &nbsp;// Division <br/> % &nbsp;// Modulus <br/> ++ // Increment <br/> -- // Decrement",
+        "Arithmetic Operators": "",
 
         "Comparison Operators": "=== // Equal value and equal type <br/> == &nbsp;// Equal to (after type conversion if operands are different data types) <br/> !== // Not equal value nor equal type <br/> != &nbsp// Not equal (after type conversion if operands are different data types) <br/> > &nbsp&nbsp// Greater than <br/> < &nbsp&nbsp// Less than <br/> >= &nbsp// Greater than or equal to <br/> <= &nbsp// Less than or equal to", 
 
@@ -514,19 +514,22 @@ function toggleCodeBoxes(ev) {
             let pl1_gist_url = pl1_syn[synFTR];
             
             // Dynamically create a script element and set its source to your Gist URL
-            const scriptElement = document.createElement('script');
-            scriptElement.src = pl1_gist_url;
+            const scriptGistCodeBox1 = document.createElement('script'); 
+            scriptGistCodeBox1.src = pl1_gist_url;
 
             // Create a unique id for the script element
-            scriptElement.id = synFTR + "1"; 
+            scriptGistCodeBox1.id = synFTR + "1"; 
 
+            // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
             if(!document._write) document._write = document.write;
             document.write = function (str) {
                 document.getElementById('pl-syn-wn-1').innerHTML += str;
             };
             // Append codeBox to the corres pl-syn-wn
-            pl_syn_wn1.appendChild(scriptElement);
-            if(scriptElement.complete) document.write = document._write;
+            pl_syn_wn1.appendChild(scriptGistCodeBox1);
+
+            // Revert change in function of document.write to it's original function
+            if(scriptGistCodeBox1.complete) document.write = document._write;
 
             console.log(pl_syn_wn1);
         }
