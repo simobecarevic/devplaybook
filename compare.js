@@ -52,6 +52,7 @@ const pLangs = {
     // Updates the pLangs object
     // Renders corres codeBoxes if codeDisplayed (exists, i.e. obj as KVPs), i.e. syn ftr menu buttons are selected
     // If there are codeBoxes already in the PL-wn (bc a PL was chosen before), remove them
+
 function update_btn1(e) { 
     e.preventDefault();
 
@@ -94,8 +95,12 @@ function update_btn1(e) {
     
 }; 
 
-// Create Event Handler for PL2 menu choices, on click to change PL2 button text
-// Ensure it updates the pLangs object
+// Create Event Handler for PL2 menu buttons, on click, that 
+    // Change PL2 button text
+    // Updates the pLangs object
+    // Renders corres codeBoxes if codeDisplayed (exists, i.e. obj as KVPs), i.e. syn ftr menu buttons are selected
+    // If there are codeBoxes already in the PL-wn (bc a PL was chosen before), remove them
+
 function update_btn2(e) { 
     e.preventDefault();
 
@@ -247,16 +252,19 @@ for (let btn of arrOfSynMenuBtns) {
 // Create an obj that will store all the syntax for all the possible languages we can compare
 
 /* 
-Syn Ftrs to potentially Add
-Assignment Operator & Keywords, or just "Assignment", under Encapsulization Generalization
+Syn Ftrs to Potentially Add
+
+- Function Default Parameters 
+- DS & Algorithm Implementation in each language
+- 
 
 */
 
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: "// JavaScript single line comment <br />/* Javascript<br />multi-line comment */",
-
+        Comments: '<script src="./gist/javascript/comments.js"></script>',
+           
         "Arithmetic Operators": "+ &nbsp;// Addition <br/> - &nbsp;// Subtraction <br/> * &nbsp;// Multiplication <br/> ** // Exponentation<br/> / &nbsp;// Division <br/> % &nbsp;// Modulus <br/> ++ // Increment <br/> -- // Decrement",
 
         "Comparison Operators": "=== // Equal value and equal type <br/> == &nbsp;// Equal to (after type conversion if operands are different data types) <br/> !== // Not equal value nor equal type <br/> != &nbsp// Not equal (after type conversion if operands are different data types) <br/> > &nbsp&nbsp// Greater than <br/> < &nbsp&nbsp// Less than <br/> >= &nbsp// Greater than or equal to <br/> <= &nbsp// Less than or equal to", 
@@ -340,8 +348,6 @@ export default function cube(x) {
 
         Exporting: "", 
 
-
-        
         "User Input": "",
 
         Output: "",
@@ -442,7 +448,7 @@ function createCodeBox(synFTR, pl, plWN) {
     pl_syn_wn1.appendChild(codeBox1);
     
 }
- */
+*/
 
 function toggleCodeBoxes(ev) {
     
@@ -453,14 +459,14 @@ function toggleCodeBoxes(ev) {
     let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
     let pl_syn_wn2 = document.querySelector(".pl-syn-wn-2");
 
-    // Figure out which PLs were selected
-    let pl1 = pLangs.pl1; // VRs in JS are all all function scoped, so I can re-use this VR name
+    // Figure out which PLs were selected, if any or either
+    let pl1 = pLangs.pl1; // VRs in JS are all function scoped, so I can re-use this VR name
     let pl2 = pLangs.pl2;
 
-    // Check if codeBoxes already added for this Syn-Ftr
+    // Check if codeBoxes already added for this Syn-Ftr; if so, REMOVE them 
     if (codeDisplayed[synFTR]) {
 
-        // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
+        // Check if each of PL1 and PL2 exist, i.e. they were SELECTED, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
         if (pl1) {
             // Get the codeBox Els that are already in the wns
             let codeBox1 = pl_syn_wn1.children.namedItem(synFTR + "1");
@@ -480,6 +486,7 @@ function toggleCodeBoxes(ev) {
             delete codeDisplayed[synFTR];
         }
         
+        
     }
 
     else {
@@ -495,23 +502,34 @@ function toggleCodeBoxes(ev) {
             codeDisplayed[synFTR] = true;
         }
 
-        // Need to split the logic for each PL, PL-wn, in two conditional statements, in case only one PL is selected
+        // Need to split the logic for each PL  PL-wn, in two conditional statements, in case only one PL is selected
+
+        // If a PL was selected for in PL1 menu...
         if (pl1) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
-            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-            let pl1_code = pl1_syn[synFTR];
-        
-            // Create codeBoxes and put the pl Code in each
-            let codeBox1 = document.createElement("div");
-            codeBox1.classList.add("codeBox");
-            // Give the codebox an Id so that it can be removed easily
-            codeBox1.id = synFTR + "1";
-            codeBox1.innerHTML = pl1_code;
-            
-            // Append codeBox to the corres pl-syn-wn
-            pl_syn_wn1.appendChild(codeBox1);
 
+
+            // Extract the Gist code string based on the Button clicked, i.e. the synFTR - use it as index
+            let pl1_gist = pl1_syn[synFTR];
+        
+            // Create a unique id for the script element
+            let id1 = synFTR + "1"; 
+
+            // Insert a unique id to the <script> el of the Gist (so can remove accordingly)
+            let pl1_gist_id = pl1_gist.slice(0, 8) + `id="${id1}" ` + pl1_gist.slice(8);
+            
+            // Convert the string into DOM Nodes; bc this will turn it into 
+            let doc = new DOMParser().parseFromString(pl1_gist_id, 'text/html');
+            console.log(doc);
+
+            let script1 = doc.getElementById(id1);
+            console.log(script1);
+
+            // Append codeBox to the corres pl-syn-wn
+            pl_syn_wn1.appendChild(script1);
+
+            console.log(pl_syn_wn1);
         }
 
         if (pl2) {

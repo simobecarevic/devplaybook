@@ -297,6 +297,13 @@ main {
     padding: 0.5rem;
 }
 
+body .gist .gist-meta {
+    display: none;
+}
+
+body .gist .gist-data {
+    border-radius: 6px;
+}
 
 /* Syntax Feature Menus Section */
 
