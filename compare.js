@@ -1,4 +1,6 @@
 
+"use strict";
+
 document.addEventListener('DOMContentLoaded', function () {
 
 // Get all choices for 1st PL drop-down menu
@@ -92,6 +94,8 @@ function update_btn1(e) {
             pl_syn_wn1.appendChild(codeBox1);
         }
     }
+
+    console.log(pLangs);
     
 }; 
 
@@ -106,9 +110,11 @@ function update_btn2(e) {
 
     // The button pressed selects for the PL 2
     var pl2 = e.target.innerHTML;
+
     // Update the button heading
     pl2_btn.innerHTML = pl2; 
     pl2_btn_div.appendChild(pl2_btn);
+
     // Update the pLangs obj
     pLangs.pl2 = pl2;
     console.log(pLangs.pl2);
@@ -129,7 +135,7 @@ function update_btn2(e) {
             let pl2_code = pl2_syn[synFTR];
                 
             // Create codeBoxes and put the pl Code in each
-            let codeBox2 = document.createElement("div")
+            let codeBox2 = document.createElement("div");
             codeBox2.classList.add("codeBox");
             // Give the codebox an Id so that it can be removed easily
             codeBox2.id = synFTR + "2";
@@ -140,6 +146,8 @@ function update_btn2(e) {
         }
     }
 
+    console.log(pLangs);
+    
 }; 
 
 
@@ -163,22 +171,7 @@ var control_flow_syn_btn = document.querySelector(".control-flow-syn-btn");
 var oop_syn_btn = document.querySelector(".oop-syn-btn");
 var modularity_syn_btn = document.querySelector(".modularity-syn-btn"); 
 
-
 var arrOfSynMenuBtns = [basic_syn_btn, gen_syn_btn, control_flow_syn_btn, oop_syn_btn, modularity_syn_btn];
-
-// console.log(basic_syn_btn, gen_syn_btn, control_flow_syn_btn, oop_syn_btn, modularity_syn_btn);
-
-/* 
-// Below not needed, as explain in ehFN below
-// Create a store of state of each menu, whether it is "on" or not, so can toggle this
-const synMenuState = {
-    basicMenuOn: false, 
-    genMenuOn: false,
-    cfMenuOn: false,
-    oopMenuOn: false,
-    modMenuOn: false
-}; 
-*/
 
 // Create event handler to toggle appearance of drop-down menu
 function toggleDropDown(e) {
@@ -187,47 +180,12 @@ function toggleDropDown(e) {
     let menu_btn = e.target;
     let menuToToggle = menu_btn.nextElementSibling; // K* this is K JS DOM attr
 
-    /* 
-
-    //Below Code was not needed, don't need to know state of the Menu, whether on or off, bc TOGGLING regardless
-
-    // Get state of the drop-down menu, based on what button was pressed
-    let menuOn, distToTranslate;
-    switch(menu_btn.innerHTML){
-        case "Basics":
-            menuOn = synMenuState.basicMenuOn;
-            distToTranslate = "";
-        case "Encapsulation & Generalization":
-            menuOn = synMenuState.genMenuOn;
-            distToTranslate = "";
-        case "Control Flow":
-            menuOn = synMenuState.cfMenuOn;
-            distToTranslate = "";
-        case "OOP":
-            menuOn = synMenuState.oopMenuOn;
-            distToTranslate = "";
-        case "Modularity & I/O":
-            menuOn = synMenuState.modMenuOn;
-            distToTranslate = "";
-    }
-
-    if (!menuOn) {
-        for (let btn of menuToToggle.children) {  // K* .children
-            btn.classList.toggle(".showButton")
-        }
-    }
-    else {
-
-    } 
-    */
-
     // For every Btn in the sibling drop down menu, toggle the "showButton" class, which will transition-transform the buttons into place
     for (let btn of menuToToggle.children) {  // K* .children
         // console.log(btn);
         btn.classList.toggle("showButton");
     }
-    
-    // console.log(menu_btn.classList);
+
     // Make the Menu-Btn's bottom border-radi sharp to be continuous with drop down below it; but this will need to need to know a sense of the STATE
     // Q* Try and see if can instead TOGGLE a CLASS to the menu button, than will TRANSITION the border-radius, particarally when closing the drop down
     if (menuToToggle.firstElementChild.classList.contains("showButton")) {
@@ -240,7 +198,6 @@ function toggleDropDown(e) {
 }
 
 // Register elFN for click on each of the syn menu buttons
-
 for (let btn of arrOfSynMenuBtns) {
     btn.addEventListener("click", toggleDropDown);
 }
@@ -253,11 +210,9 @@ for (let btn of arrOfSynMenuBtns) {
 
 /* 
 Syn Ftrs to Potentially Add
-
 - Function Default Parameters 
 - DS & Algorithm Implementation in each language
 - 
-
 */
 
 const pLangsSyn = {
@@ -265,7 +220,7 @@ const pLangsSyn = {
         /* Basics */
         Comments: "./gist/javascript/comments.js",
            
-        "Arithmetic Operators": "",
+        "Arithmetic Operators": "./gist/javascript/arithmetic_operators.js",
 
         "Comparison Operators": "=== // Equal value and equal type <br/> == &nbsp;// Equal to (after type conversion if operands are different data types) <br/> !== // Not equal value nor equal type <br/> != &nbsp// Not equal (after type conversion if operands are different data types) <br/> > &nbsp&nbsp// Greater than <br/> < &nbsp&nbsp// Less than <br/> >= &nbsp// Greater than or equal to <br/> <= &nbsp// Less than or equal to", 
 
@@ -424,64 +379,69 @@ const pLangs = {
 // Create an Obj that keeps state of which syn/codeBoxes are being displayed in the wn right; this is necessary bc pressing a menu button will Toggle the display, & this will be needed for the Toggle event-handler
 
 const codeDisplayed = {};
+console.log(codeDisplayed);
 
-// FN that Produces Code-Boxes and add them to the Pl-Syn-Wn 
-    // Will use plSyn global Obj, and pLangs global obj
-
-/* Didn't end up creating a createCodeBox FN... too much complexity; just copy code from below toggleCodeBoxes and put in updateBtn Fn
-// Create a FN simply for creating a CodeBox, based on an input of the syntax FTR (i.e. the innerHTML of the Syn Ftr Buttons); this nested FN will be called in toggleCodeBoxes, but also in the above updateBtn() FN (conditional on synFTRs already being selected)
-
-function createCodeBox(synFTR, pl, plWN) {
-    // Select for the PL's Syn Obj in PLs Syn obj
-    let pl_syn = pLangsSyn[pl]; 
-    // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-    let pl_code = pl_syn[synFTR];
-
-    // Create codeBoxes and put the pl Code in each
-    let codeBox = document.createElement("div")
-    codeBox.classList.add("codeBox");
-    // Give the codebox an Id so that it can be removed easily
-    codeBox.id = synFTR + plWN;
-    codeBox.innerHTML = pl_code;
-    
-    // Append codeBox to the corres pl-syn-wn
-    pl_syn_wn1.appendChild(codeBox1);
-    
-}
-*/
 
 function toggleCodeBoxes(ev) {
     
     // Extract the SYN FTR you are toggling
     const synFTR = ev.target.innerHTML; 
+    console.log(synFTR);
 
     // Get the PL Syn Wn
     let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
     let pl_syn_wn2 = document.querySelector(".pl-syn-wn-2");
 
+    console.log(pl_syn_wn1);
+    console.log(pl_syn_wn2);
+
     // Figure out which PLs were selected, if any or either
     let pl1 = pLangs.pl1; // VRs in JS are all function scoped, so I can re-use this VR name
-    let pl2 = pLangs.pl2;
+    let pl2 = pLangs.pl2; 
 
-    // Check if codeBoxes already added for this Syn-Ftr; if so, REMOVE them 
+    console.log(pl1);
+    console.log(pl2);
+
+
+    // Check if codeBoxes already added for this Syn-Ftr; if so, REMOVE them  
     if (codeDisplayed[synFTR]) {
         
+        // Get rid of spaces in the synFTR string bc you will be selecting for the els to remove based on the id of the script, which had the space taken out when it was added
+        let synFTRid = synFTR.split(" ").join("");
+
         // Check if each of PL1 and PL2 exist, i.e. they were SELECTED, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
         if (pl1) {
-            // Get the codeBox Els that are already in the wns
-            let codeBox1 = pl_syn_wn1.children.namedItem(synFTR + "1");
-            // Remove the codeBoxes 
-            pl_syn_wn1.removeChild(codeBox1);
+            // Get the GIST Els that are already in the wns
+            let script1 = pl_syn_wn1.children.namedItem(synFTRid + "1");
+            console.log(script1);
+            let scriptsStylesheet1 = script1.nextElementSibling;
+            console.log(scriptsStylesheet1);
+            let scriptsDivGist1 = scriptsStylesheet1.nextElementSibling;
+            console.log(scriptsDivGist1);
+
+            // Remove the GIST Els i.e. the script and it's subsequent link-stylesheet and div codebox
+            pl_syn_wn1.removeChild(script1);
+            pl_syn_wn1.removeChild(scriptsStylesheet1);
+            pl_syn_wn1.removeChild(scriptsDivGist1);
+            
         }
 
         if (pl2) {   
-            // Get the codeBox Els that are already in the WNs   
-            let codeBox2 = pl_syn_wn2.children.namedItem(synFTR + "2");
-            // Remove the codeBoxes 
-            pl_syn_wn2.removeChild(codeBox2);
+            // Get the GIST Els that are already in the wns
+            let script2 = pl_syn_wn2.children.namedItem(synFTRid + "2");
+            console.log(script2);
+            let scriptsStylesheet2 = script2.nextElementSibling;
+            console.log(scriptsStylesheet2);
+            let scriptsDivGist2 = scriptsStylesheet2.nextElementSibling;
+            console.log(scriptsDivGist2);
+
+            // Remove the GIST Els i.e. the script and it's subsequent link-stylesheet and div codebox
+            pl_syn_wn2.removeChild(script2);
+            pl_syn_wn2.removeChild(scriptsStylesheet2);
+            pl_syn_wn2.removeChild(scriptsDivGist2);
         }  
         
-        // If either of the PLs was selected, then delete the Syn-Ftr from the list of Syn FTRs; this line code go instead in if condxn blocks above
+        // If either of the PLs was selected, then delete the Syn-Ftr from the list of Syn FTRs; this line could go instead in if condxn blocks above
         if (pl1 || pl2) {
             delete codeDisplayed[synFTR];
         }
@@ -502,10 +462,19 @@ function toggleCodeBoxes(ev) {
             codeDisplayed[synFTR] = true;
         }
 
+        
+        /* if (pl1 && pl2) {
+            let deferScript = true;
+        } */
+
         // Need to split the logic for each PL  PL-wn, in two conditional statements, in case only one PL is selected
 
         // If a PL was selected for in PL1 menu...
         if (pl1) {
+            console.log(pl_syn_wn1);
+            console.log(pl_syn_wn2);
+            console.log(pl1);
+            console.log(pl2);
 
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
@@ -517,14 +486,25 @@ function toggleCodeBoxes(ev) {
             const scriptGistCodeBox1 = document.createElement('script'); 
             scriptGistCodeBox1.src = pl1_gist_url;
 
-            // Create a unique id for the script element
-            scriptGistCodeBox1.id = synFTR + "1"; 
+            // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
+            let synFTRid = synFTR.split(" ").join("");
+            
+            // Get rid of asynchronousity, so that script executes before parsing rest of HTML
+            scriptGistCodeBox1.async = false;
+
+            
+            scriptGistCodeBox1.id = synFTRid + "1"; 
 
             // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
             if(!document._write) document._write = document.write;
             document.write = function (str) {
-                document.getElementById('pl-syn-wn-1').innerHTML += str;
+                let plWN1 = document.getElementById('pl-syn-wn-1');
+                console.log(plWN1);
+
+                plWN1.innerHTML += str;
             };
+
+            
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn1.appendChild(scriptGistCodeBox1);
 
@@ -537,19 +517,35 @@ function toggleCodeBoxes(ev) {
         if (pl2) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl2_syn = pLangsSyn[pl2];
+
             // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-            let pl2_code = pl2_syn[synFTR];
+            let pl2_gist_url = pl2_syn[synFTR];
 
-            // Create codeBoxes and put the pl Code in each
-            let codeBox2 = document.createElement("div");
-            codeBox2.classList.add("codeBox");
+            // Dynamically create a script element and set its source to your Gist URL
+            const scriptGistCodeBox2 = document.createElement('script'); 
+            scriptGistCodeBox2.src = pl2_gist_url;
 
-            // Give the codebox an Id so that it can be removed easily
-            codeBox2.id = synFTR + "2";
-            codeBox2.innerHTML = pl2_code;
+            // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
+            let synFTRid = synFTR.split(" ").join("");
+            console.log(synFTRid);
 
+            // Get rid of asynchronousity, so that script executes before parsing rest of HTML
+            scriptGistCodeBox2.async = false;
+
+            scriptGistCodeBox2.id = synFTRid + "2"; 
+
+            // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
+            if(!document._write) document._write = document.write;
+            document.write = function (str) {
+                document.getElementById('pl-syn-wn-2').innerHTML += str;
+            };
             // Append codeBox to the corres pl-syn-wn
-            pl_syn_wn2.appendChild(codeBox2);
+            pl_syn_wn2.appendChild(scriptGistCodeBox2);
+
+            // Revert change in function of document.write to it's original function
+            if(scriptGistCodeBox2.complete) document.write = document._write;
+
+            console.log(pl_syn_wn2);
         }
         
     }
