@@ -76,19 +76,24 @@ function update_btn1(e) {
     // If codeDisplayed has KVPs, i.e. Syn FTR menu buttons selected, for each synFTR/codeDisplayed, create a CodeBox and add it to the corrs PL-syn-wn
     if (Object.keys(codeDisplayed).length !== 0) {
         for (let synFTR in codeDisplayed) {
+            // below is same code that can be found in the toggleCodeBox fn
+            // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
-            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-            let pl1_code = pl1_syn[synFTR];
-                
-            // Create codeBoxes and put the pl Code in each
-            let codeBox1 = document.createElement("div")
-            codeBox1.classList.add("codeBox");
-            // Give the codebox an Id so that it can be removed easily
-            codeBox1.id = synFTR + "1";
-            codeBox1.innerHTML = pl1_code;
+
+            // From the pLangsSyn object, Extract the URL for the Gist Script that generates the syn-code box, based on the Button clicked, i.e. the synFTR use it as index, AS WELL as WHICH PLWN we are using PL2 itc
+            let pl1_gist_url = pl1_syn[synFTR].PL1;
             
+            // Dynamically create a script element and set its source to your Gist URL
+            const scriptGistCodeBox1 = document.createElement('script'); 
+            scriptGistCodeBox1.src = pl1_gist_url;
+            
+
+            // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
+            let synFTRid = synFTR.split(" ").join("");
+            
+            scriptGistCodeBox1.id = synFTRid + "1";
             // Append codeBox to the corres pl-syn-wn
-            pl_syn_wn1.appendChild(codeBox1);
+            pl_syn_wn1.appendChild(scriptGistCodeBox1);
         }
     }
 
@@ -127,19 +132,24 @@ function update_btn2(e) {
     // If codeDisplayed has KVPs, i.e. Syn FTR menu buttons selected, for each synFTR/codeDisplayed, create a CodeBox and add it to the corrs PL-syn-wn
     if (Object.keys(codeDisplayed).length !== 0) {
         for (let synFTR in codeDisplayed) {
+            // below is same code that can be found in the toggleCodeBox fn
+            // Select for the PL's Syn Obj in PLs Syn obj
             let pl2_syn = pLangsSyn[pl2]; 
-            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-            let pl2_code = pl2_syn[synFTR];
-                
-            // Create codeBoxes and put the pl Code in each
-            let codeBox2 = document.createElement("div");
-            codeBox2.classList.add("codeBox");
-            // Give the codebox an Id so that it can be removed easily
-            codeBox2.id = synFTR + "2";
-            codeBox2.innerHTML = pl2_code;
-            
+
+            // From the pLangsSyn object, Extract the URL for the Gist Script that generates the syn-code box, based on the Button clicked, i.e. the synFTR use it as index, AS WELL as WHICH PLWN we are using PL2 itc
+            let pl2_gist_url = pl2_syn[synFTR].PL2;
+
+            // Dynamically create a script element and set its source to your Gist URL
+            const scriptGistCodeBox2 = document.createElement('script'); 
+            scriptGistCodeBox2.src = pl2_gist_url;
+
+            // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
+            let synFTRid = synFTR.split(" ").join("");
+
+            scriptGistCodeBox2.id = synFTRid + "2"; 
             // Append codeBox to the corres pl-syn-wn
-            pl_syn_wn2.appendChild(codeBox2);
+            pl_syn_wn2.appendChild(scriptGistCodeBox2);
+
         }
     }
 
@@ -203,7 +213,7 @@ for (let btn of arrOfSynMenuBtns) {
 
 /* SYN FTR COMPARISON FUNCTIONALITY; BUTTON SELECTION, & RENDERING OF SYN COMPARISON IN PL WINDOWS */
 
-// Create an obj that will store all the syntax for all the possible languages we can compare
+// Create an obj that will store all the syntax for all the possible languages we can compare, for EACH PL-WN
 
 /* 
 Syn Ftrs to Potentially Add
@@ -215,9 +225,12 @@ Syn Ftrs to Potentially Add
 const pLangsSyn = {
     JavaScript : {
         /* Basics */
-        Comments: "./gist/javascript/comments.js",
-           
-        "Arithmetic Operators": "./gist/javascript/arithmetic_operators.js",
+        Comments:  {
+            PL1: "./gist/javascript/commentsPL1.js",
+            PL2: "./gist/javascript/commentsPL2.js",
+        },
+        
+        "Arithmetic Operators": "./gist/javascript/arithmetic_operators.js", 
 
         "Comparison Operators": "=== // Equal value and equal type <br/> == &nbsp;// Equal to (after type conversion if operands are different data types) <br/> !== // Not equal value nor equal type <br/> != &nbsp// Not equal (after type conversion if operands are different data types) <br/> > &nbsp&nbsp// Greater than <br/> < &nbsp&nbsp// Less than <br/> >= &nbsp// Greater than or equal to <br/> <= &nbsp// Less than or equal to", 
 
@@ -364,6 +377,16 @@ export default function cube(x) {
     }
 }
 
+/* const pLangsSynPL2 = {
+    JavaScript : {
+        
+        Comments: "./gist/javascript/commentsPL2.js",
+           
+        "Arithmetic Operators": "./gist/javascript/arithmetic_operators.js"
+    }
+} 
+*/
+
 /* 
 // Recall 
 const pLangs = {
@@ -468,8 +491,8 @@ function toggleCodeBoxes(ev) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
 
-            // Extract the Gist code string based on the Button clicked, i.e. the synFTR - use it as index
-            let pl1_gist_url = pl1_syn[synFTR];
+            // From the pLangsSyn object, Extract the URL for the Gist Script that generates the syn-code box, based on the Button clicked, i.e. the synFTR use it as index, AS WELL as WHICH PLWN we are using PL2 itc
+            let pl1_gist_url = pl1_syn[synFTR].PL1;
             
             // Dynamically create a script element and set its source to your Gist URL
             const scriptGistCodeBox1 = document.createElement('script'); 
@@ -481,14 +504,14 @@ function toggleCodeBoxes(ev) {
             
             scriptGistCodeBox1.id = synFTRid + "1";
 
-
-            scriptGistCodeBox1.setAttribute("class", "scriptPLWN")
-            scriptGistCodeBox1.setAttribute("plWNid", "pl-syn-wn-1");
+            /* scriptGistCodeBox1.setAttribute("class", "scriptPLWN");
+            scriptGistCodeBox1.setAttribute("plWNid", "pl-syn-wn-1"); */
+            
+            /* 
+            // This was solution to lack of loading of the script
 
             // Get rid of asynchronousity, so that script executes before parsing rest of HTML
             scriptGistCodeBox1.async = false;
-            /* 
-            // This was solution to lack of loading of the script
 
             // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
             if(!document._write) document._write = document.write;
@@ -510,8 +533,8 @@ function toggleCodeBoxes(ev) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl2_syn = pLangsSyn[pl2];
 
-            // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-            let pl2_gist_url = pl2_syn[synFTR];
+            // From the pLangsSyn object, Extract the URL for the Gist Script that generates the syn-code box, based on the Button clicked, i.e. the synFTR use it as index, AS WELL as WHICH PLWN we are using PL2 itc
+            let pl2_gist_url = pl2_syn[synFTR].PL2;
 
             // Dynamically create a script element and set its source to your Gist URL
             const scriptGistCodeBox2 = document.createElement('script'); 
@@ -523,15 +546,15 @@ function toggleCodeBoxes(ev) {
             scriptGistCodeBox2.id = synFTRid + "2"; 
 
 
-            scriptGistCodeBox2.setAttribute("class", "scriptPLWN")
-            scriptGistCodeBox2.setAttribute("plWNid", "pl-syn-wn-2");
+            /* scriptGistCodeBox2.setAttribute("class", "scriptPLWN")
+            scriptGistCodeBox2.setAttribute("plWNid", "pl-syn-wn-2"); */
 
-
-            // Get rid of asynchronousity, so that script executes before parsing rest of HTML
-            scriptGistCodeBox2.async = false;
             /* 
             // This was solution to lack of loading of the script
             
+            // Get rid of asynchronousity, so that script executes before parsing rest of HTML
+            scriptGistCodeBox2.async = false;
+
             // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
             if(!document._write) document._write = document.write;
             document.write = function (str) {

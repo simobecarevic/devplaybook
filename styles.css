@@ -192,6 +192,8 @@ main {
 .pl-dropdown-div {
     position: relative;
     margin: 0 auto 20px;
+    /* Below are to ensure Gist Code Boxes are behind the PL dropdown menu*/
+    z-index: 1;
 }
 
 .pl-btn {
@@ -282,6 +284,10 @@ main {
     overflow: scroll;
     border-radius: 7.5px;
     overflow-anchor: none;
+
+    /* Below are to ensure Gist Code Boxes are behind the PL dropdown menu*/
+    position: relative;
+    z-index: -1;
 }
 
 /* 
