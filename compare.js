@@ -1,6 +1,3 @@
-
-"use strict";
-
 document.addEventListener('DOMContentLoaded', function () {
 
 // Get all choices for 1st PL drop-down menu
@@ -399,13 +396,9 @@ function toggleCodeBoxes(ev) {
     let pl1 = pLangs.pl1; // VRs in JS are all function scoped, so I can re-use this VR name
     let pl2 = pLangs.pl2; 
 
-    console.log(pl1);
-    console.log(pl2);
-
-
     // Check if codeBoxes already added for this Syn-Ftr; if so, REMOVE them  
     if (codeDisplayed[synFTR]) {
-        
+
         // Get rid of spaces in the synFTR string bc you will be selecting for the els to remove based on the id of the script, which had the space taken out when it was added
         let synFTRid = synFTR.split(" ").join("");
 
@@ -467,14 +460,10 @@ function toggleCodeBoxes(ev) {
             let deferScript = true;
         } */
 
-        // Need to split the logic for each PL  PL-wn, in two conditional statements, in case only one PL is selected
+        // Need to split the logic for each PL PL-wn, in two conditional statements, in case only one PL is selected
 
         // If a PL was selected for in PL1 menu...
         if (pl1) {
-            console.log(pl_syn_wn1);
-            console.log(pl_syn_wn2);
-            console.log(pl1);
-            console.log(pl2);
 
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
@@ -485,33 +474,36 @@ function toggleCodeBoxes(ev) {
             // Dynamically create a script element and set its source to your Gist URL
             const scriptGistCodeBox1 = document.createElement('script'); 
             scriptGistCodeBox1.src = pl1_gist_url;
+            
 
             // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
             let synFTRid = synFTR.split(" ").join("");
             
+            scriptGistCodeBox1.id = synFTRid + "1";
+
+
+            scriptGistCodeBox1.setAttribute("class", "scriptPLWN")
+            scriptGistCodeBox1.setAttribute("plWNid", "pl-syn-wn-1");
+
             // Get rid of asynchronousity, so that script executes before parsing rest of HTML
             scriptGistCodeBox1.async = false;
-
-            
-            scriptGistCodeBox1.id = synFTRid + "1"; 
+            /* 
+            // This was solution to lack of loading of the script
 
             // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
             if(!document._write) document._write = document.write;
             document.write = function (str) {
-                let plWN1 = document.getElementById('pl-syn-wn-1');
-                console.log(plWN1);
-
-                plWN1.innerHTML += str;
+                document.getElementById('pl-syn-wn-1').innerHTML += str;
             };
-
+            */
             
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn1.appendChild(scriptGistCodeBox1);
 
-            // Revert change in function of document.write to it's original function
-            if(scriptGistCodeBox1.complete) document.write = document._write;
+            /* // Revert change in function of document.write to it's original function
+            if(scriptGistCodeBox1.complete) document.write = document._write; */
 
-            console.log(pl_syn_wn1);
+            console.log("End of p1block execution, pl_syn_wn1 is: ",  pl_syn_wn1);
         }
 
         if (pl2) {
@@ -527,25 +519,33 @@ function toggleCodeBoxes(ev) {
 
             // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
             let synFTRid = synFTR.split(" ").join("");
-            console.log(synFTRid);
-
-            // Get rid of asynchronousity, so that script executes before parsing rest of HTML
-            scriptGistCodeBox2.async = false;
 
             scriptGistCodeBox2.id = synFTRid + "2"; 
 
+
+            scriptGistCodeBox2.setAttribute("class", "scriptPLWN")
+            scriptGistCodeBox2.setAttribute("plWNid", "pl-syn-wn-2");
+
+
+            // Get rid of asynchronousity, so that script executes before parsing rest of HTML
+            scriptGistCodeBox2.async = false;
+            /* 
+            // This was solution to lack of loading of the script
+            
             // Temporarily overwrite fn of document.write() Md (saving it's curr meaning to a temp Vr), to appending to PL-Syn-Wn the Gist Els 
             if(!document._write) document._write = document.write;
             document.write = function (str) {
                 document.getElementById('pl-syn-wn-2').innerHTML += str;
             };
+            */
+
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn2.appendChild(scriptGistCodeBox2);
 
-            // Revert change in function of document.write to it's original function
-            if(scriptGistCodeBox2.complete) document.write = document._write;
+            /* // Revert change in function of document.write to it's original function
+            if(scriptGistCodeBox2.complete) document.write = document._write; */
 
-            console.log(pl_syn_wn2);
+            console.log("End of p2block execution, pl_syn_wn2 is: ",  pl_syn_wn2);
         }
         
     }
