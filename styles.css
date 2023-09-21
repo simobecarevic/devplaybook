@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html {
+    background-color: black;
+}
+
 body {
     background-color: rgb(19, 20, 23);
     font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -143,9 +147,6 @@ header {
     border-bottom: none;
 }
 
-main {
-    
-}
 
 .pl-notes-col {
     background-color: aqua;
@@ -161,11 +162,11 @@ main {
     background-size: cover;   
 }
 
-
 /* Comparison Tool Page */
 
 .comparison-tool-title {
-    margin: 120px 10% 32px;
+    margin: 0px 10% 32px;
+    padding: 120px 0 0 ;
     color: white;
     text-align: center;
 }

@@ -230,8 +230,11 @@ const pLangsSyn = {
             PL2: "./gist/javascript/commentsPL2.js",
         },
         
-        "Arithmetic Operators": "./gist/javascript/arithmetic_operators.js", 
-
+        "Arithmetic Operators": {
+            PL1: "./gist/javascript/arithmetic_operatorsPL1.js",
+            PL2: "./gist/javascript/arithmetic_operatorsPL2.js",
+        },
+        
         "Comparison Operators": "=== // Equal value and equal type <br/> == &nbsp;// Equal to (after type conversion if operands are different data types) <br/> !== // Not equal value nor equal type <br/> != &nbsp// Not equal (after type conversion if operands are different data types) <br/> > &nbsp&nbsp// Greater than <br/> < &nbsp&nbsp// Less than <br/> >= &nbsp// Greater than or equal to <br/> <= &nbsp// Less than or equal to", 
 
         "Logical Operators": "&& // And <br/> || // Or <br/> ! &nbsp// Not",  
