@@ -116,7 +116,6 @@ header {
 
     opacity: 0;
     transform: translateY(-1.25rem) scale(0.99);
-
 }
 
 .header-nav-tools:hover .tools-dropdown {
@@ -289,6 +288,7 @@ header {
     /* Below are to ensure Gist Code Boxes are behind the PL dropdown menu*/
     position: relative;
     z-index: 1;
+    overflow-x: none;
 }
 
 /* 
@@ -319,7 +319,10 @@ body .gist .gist-data {
     border-radius: 6px;
 }
 
-
+/* Set the max-width of all the container elements of Gist, so that Gist codeboxes width does not change*/
+body .gist , body .gist-file, body .gist-data, body .file-box, body .file, body .Box-body,body .blob-code-content, body table, body .gist tr {
+    max-width: 100%;
+}
 
 /* Syntax Feature Menus Section */
 

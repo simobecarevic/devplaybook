@@ -220,7 +220,7 @@ Syn Ftrs to Potentially Add
 - Function Default Parameters 
 - DS & Algorithm Implementation in each language
 - 
-*/
+*/ 
 
 const pLangsSyn = {
     JavaScript : {
@@ -239,7 +239,7 @@ const pLangsSyn = {
             PL1: "./gist/javascript/comparison_operatorsPL1.js",
             PL2: "./gist/javascript/comparison_operatorsPL2.js"
         },
-
+        
         "Logical Operators": {
             PL1: "./gist/javascript/logical_operatorsPL1.js",
             PL2: "./gist/javascript/logical_operatorsPL2.js"
@@ -323,12 +323,10 @@ const pLangsSyn = {
             PL2: "./gist/javascript/exportingPL2.js"
         },
 
-        
         "User Input": {
             PL1: "./gist/javascript/user_inputPL1.js",
             PL2: "./gist/javascript/user_inputPL2.js"
         },
-
 
         Output: {
             PL1: "./gist/javascript/outputPL1.js",
@@ -457,7 +455,7 @@ const pLangsSyn = {
             PL2: "./gist/python/asynchronousPL2.js"
         }
     },
-    
+
     "Java" : {
         /* Basics */
         Comments:{
