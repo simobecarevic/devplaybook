@@ -290,7 +290,7 @@ const pLangsSyn = {
         },
 
         "Error Handling": {
-            PL1: "./gist/javascript/error_handlingPL1.js",
+            PL1: "./gist/javascript/error_handlingPL1.png",
             PL2: "./gist/javascript/error_handlingPL2.js"
         },
 
@@ -319,7 +319,7 @@ const pLangsSyn = {
         },
 
         Exporting: {
-            PL1: "./gist/javascript/exportingPL1.js",
+            PL1: "./gist/javascript/exportingPL1.png",
             PL2: "./gist/javascript/exportingPL2.js"
         },
 
@@ -687,10 +687,24 @@ function toggleCodeBoxes(ev) {
             let pl1_gist_url = pl1_syn[synFTR].PL1;
             console.log(pl1_gist_url);
 
-            // Dynamically create a script element and set its source to your Gist URL
+            const carbonCodeImg = document.createElement('img'); 
+            carbonCodeImg.src = pl1_gist_url;
+            
+            // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
+            let synFTRid = synFTR.split(" ").join("");
+            
+            carbonCodeImg.id = synFTRid + "1";
+            carbonCodeImg.style.width = "100%";
+            console.log(carbonCodeImg);
+            
+            // Append codeBox to the corres pl-syn-wn
+            pl_syn_wn1.appendChild(carbonCodeImg);
+
+            /* // Dynamically create a script element and set its source to your Gist URL
             const scriptGistCodeBox1 = document.createElement('script'); 
             scriptGistCodeBox1.src = pl1_gist_url;
-            
+
+
 
             // Create a unique id for the script element, from the synFTR, but just get rid of spaces in the synFTR string
             let synFTRid = synFTR.split(" ").join("");
@@ -700,6 +714,8 @@ function toggleCodeBoxes(ev) {
             
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn1.appendChild(scriptGistCodeBox1);
+
+            */
 
             /* // Revert change in function of document.write to it's original function
             if(scriptGistCodeBox1.complete) document.write = document._write; */
