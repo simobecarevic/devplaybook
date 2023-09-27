@@ -307,6 +307,7 @@ Got rid of this method of posting Code
 } 
 */
 
+
 body .gist .gist-file {
     margin: 0;
 }
@@ -319,10 +320,13 @@ body .gist .gist-data {
     border-radius: 6px;
 }
 
-/* Set the max-width of all the container elements of Gist, so that Gist codeboxes width does not change*/
-body .gist , body .gist-file, body .gist-data, body .file-box, body .file, body .Box-body,body .blob-code-content, body table, body .gist tr {
+/* Set the max-width of all the container elements of Gist, so that Gist codeboxes width does not change 
+
+body .gist , body .gist-file, body .gist-data, body .file-box, body .file, body .Box-body,body .blob-code-content, body table, body .gist tr, body .blob-code, .blob-code span {
     max-width: 100%;
 }
+// This does NOT Work, for whatever reason
+*/
 
 /* Syntax Feature Menus Section */
 
