@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
 
 // Get all choices for 1st PL drop-down menu
@@ -47,6 +46,24 @@ const pLangs = {
 }
 
 
+/* Create FN to PIN SCROLLING in the PL-SYN-WNs to the BOTTOM of each, whenever a codeBox element is added 
+- This will be needed for the update_btn FNs below, as well as the toggleCodeBoxes() FN
+*/
+
+function updateScrollWN1(){
+    let pl_syn_wn1 = document.querySelector(".pl-syn-wn-1");
+    let lastChildHeight = pl_syn_wn1.lastElementChild.offsetHeight;
+    pl_syn_wn1.scrollTop = pl_syn_wn1.scrollHeight - lastChildHeight;
+}
+
+function updateScrollWN2(){
+    let pl_syn_wn2 = document.querySelector(".pl-syn-wn-2");
+    let lastChildHeight = pl_syn_wn2.lastElementChild.offsetHeight;
+    pl_syn_wn2.scrollTop = pl_syn_wn2.scrollHeight - lastChildHeight;
+}
+
+
+
 // Create Event Handler for PL1 menu buttons, on click, that 
     // Change PL1 button text
     // Updates the pLangs object
@@ -89,6 +106,9 @@ function update_btn1(e) {
             
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn1.appendChild(codeBox1);
+
+            // Pin scrolling to the bottom
+            updateScrollWN1();
         }
     }
     
@@ -132,6 +152,9 @@ function update_btn2(e) {
             
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn2.appendChild(codeBox2);
+
+            // Pin scrolling to the bottom
+            updateScrollWN2();
         }
     }
 
@@ -275,23 +298,23 @@ const pLangsSyn = {
 
         /* Control Flow */
     
-        "Conditional Statements": "if (condition) { <br/> &emsp; /* code block executed if the condition is true */ <br/> } else { <br/> &emsp; /* code block executed if the condition is false */ <br/> } <br/><br/> // else if : specifies alternate condition if the first condition is false <br/> if (condition) { <br/> &emsp; /* block of code to be executed if the condition is true */ <br/> } else if { <br/> &emsp; /* code block executed if alternate condition is true */ <br/> } else { <br/> &emsp; /* code block executed if all conditions are false */ <br/> }",
+        "Conditional Statements": "if (condition) { <br/> &emsp; <span>/* code block executed if the condition is true */</span> <br/> } else { <br/> &emsp; <span>/* code block executed if the condition is false */</span> <br/> } <br/><br/> <span>// else if: specifies alternate condition if the first condition is false.</span> <br/> if (condition) { <br/> &emsp; <span>/* block of code to be executed if the condition is true */</span> <br/> } else if { <br/> &emsp; <span>/* code block executed if alternate condition is true */</span> <br/> } else { <br/> &emsp; <span>/* code block executed if all conditions are false */</span> <br/> }",
 
-        "Matching Conditional": "Switch statement: evaluates an expression, compares this value against case values, executes statements after first case with matching value until a \"break\" statement is encountered. <br/> &emsp; - If there is no matching case value, the (optional) default code block is executed <br/>&emsp; - omitting the \"break\" statement, will cause next case to be executed even if the evaluation does not match the case; no \"break\" needed in the last switch block because the switch construct breaks (ends) there <br/><br/>switch(expression) { <br/>&emsp; case x: <br/>&emsp;&emsp; // code block <br/>&emsp;&emsp; break; <br/>&emsp; case y: <br/>&emsp;&emsp; // code block <br/>&emsp;&emsp; break; <br/> &emsp; default: <br/>&emsp;&emsp; // code block <br/>}",
+        "Matching Conditional": "<span> /* Switch statement: evaluates an expression, compares this value against case values, executes statements after first case with matching value until a \"break\" statement is encountered. <br/> - If there is no matching case value, the (optional) default code block is executed. <br/> - omitting the \"break\" statement, will cause next case to be executed even if the evaluation does not match the case; no \"break\" needed in the last switch block because the switch construct breaks (ends) there. */</span> <br/><br/>switch(expression) { <br/>&emsp; case x: <br/>&emsp;&emsp; <span>// code block</span> <br/>&emsp;&emsp; break; <br/>&emsp; case y: <br/>&emsp;&emsp; <span>// code block</span> <br/>&emsp;&emsp; break; <br/> &emsp; default: <br/>&emsp;&emsp; <span>// code block</span> <br/>}",
 
-        "For Loop": "For Loop: loop header parentheses contains, in following order, 3 expressions: i) initialization expression, where set or declare loop variable ii) loop condition expression, boolean expression including loop variable that determines whether loop body executed iii) loop variable update expression executed after loop executed. <br/><br/> for (let loopVar = 0; loopVar<= 10; loopVar++ ) { <br/> &emsp; // loop body <br/> } <br/><br/> 2. \"for...of\" loop : iterates through the values/items of an iterable (array, string, set, map); cannot be used to iterate through an object <br/><br/> for (item of myArray) { <br/> &emsp; // loop body <br/>} <br/><br/> 3. \"for...in\" loop: iterate through the keys of an object; can be used for iterables but should be avoided <br/><br/> for (key in obj) { <br/> &emsp; console.log(`${key}: ${object[key]}`) <br/> }",
+        "For Loop": "<span>/* For Loop: loop header parentheses contains, in following order, 3 expressions: <br/> - i) initialization expression, where set or declare loop variable.  <br/> - ii) loop condition expression, boolean expression including loop variable that determines whether loop body executed.  <br/> - iii) loop variable update expression executed after loop executed. */</span> <br/><br/> for (let loopVar = 0; loopVar <= 10; loopVar++ ) { <br/> &emsp; <span>// loop body</span> <br/> } <br/><br/> <span>/* 2. \"for...of\" loop : iterates through the values/items of an iterable (array, string, set, map); cannot be used to iterate through an object. */</span> <br/><br/> for (item of myArray) { <br/> &emsp; <span>// loop body</span> <br/>} <br/><br/> <span>/* 3. \"for...in\" loop: iterate through the keys of an object; can be used for iterables but should be avoided. */</span> <br/><br/> for (key in obj) { <br/> &emsp; console.log(`${key}: ${object[key]}`); <br/> }",
 
         "While Loop": "While Loop: condition expression is located in header parentheses. Loop variable initialization must occur prior to while loop, and loop variable update expression must occur in loop body. <br/><br/> let loopVar = 0; <br/> while (loopVar < x) { </br/> &emsp; // loop body <br/> &emsp; loopVar++; <br/> } <br/><br/> 2. do while loop : loop body is executed at least once, prior to checking loop condition for further iterations <br/></br/> let loopVar = y; </br> do { <br/> &emsp; // loop body <br/> &emsp; loopVar++; <br/> } while (loopVar < z);",
 
-        "Error Handling": "\"try ... catch\" statement : code that may throw an error (or multiple errors) when executed is written within the try block, and actions for handling these errors are written within the catch block, which executes only if an error occurs in try block; allows the program to continue running. Error thrown in catch block can be built-in or user-defined using \"throw\" keyword. Optional \"finally\" statement executes code, after try...catch, regardless of result. <br/><br/> try { <br/>&emsp; // code block <br/>&emsp; if (condition) {<br/>&emsp;&emsp; throw Error(\"error message\") <br/>&emsp;} <br/>} <br/> catch(errorObj) { <br/>&emsp; // code block to handle Error <br/> } <br/> finally { <br/> &emsp; // code block to execute regardless of catch...try result <br/> }",
+        "Error Handling": "<span> /* try...catch statement: anticipate and handle thrown errors (both built-in errors as well as those constructed with Error() ) while allowing a program to continue running. Code that may throw an error(s) when executed is written within the try block, and actions for handling these errors are written within the catch block. The optional finally statement defines a code block to run regardless of the result. */</span> <br/><br/>try { <br/> &emsp; throw Error('This constructed error will be caught'); <br/> } catch (e) { <br/> &emsp; console.log(e); <span>// Prints the thrown Error object</span><br/>} finally { <br/> &emsp;<span>/* Block of code to be executed regardless of the try...catch result */</span><br/>}<br/><br/><span>/* Error() function: creates an error object with a custom message. This function takes a string argument which becomes the value of the error's message property. An error created with this function will not stop a program from running unless throw keyword is placed before an Error() function call or object in order to raise an error */</span><br/><br/><span>// The following statement will not stop program execution</span><br/>console.log(new Error('Your password is too weak.')); <br/><span>// The following statement will stop program execution</span><br/>throw Error('nothing after this line runs');",
 
         /* OOP */
 
-        "Objects": "Object literal is enclosed with curly braces {}. Values are mapped to keys in the object with a colon (:), and the key-value pairs are separated by commas. All the keys are unique, but values are not. Key-value pairs of an object are also referred to as properties <br/><br/> const objID = { <br/> &emsp; name: \"John Doe\", <br/> &emsp; age: 40 <br/> } <br/><br/> ",
+        "Objects": "<span>/* Objects: object literal is enclosed with curly braces {}. <br/> - Values are mapped to keys in the object with a colon (:), and the key-value pairs are separated by commas. <br/> - All the keys are unique, but values are not. <br/>- Key-value pairs of an object are also referred to as properties */</span> <br/><br/> const objID = { <br/> &emsp; name: \"John Doe\", <br/> &emsp; age: 40 <br/> } <br/><br/> ",
 
-        "Classes": "Constructor Method is where all instance properties are declared, prepended with \"this\" keyword. Methods in classes do not have any separators between them. New instances are created using the \"new\" keyword. Methods prepended w \"static\" aka static methods are only callable on classes, not on instances. <br/><br/> class Animal { <br/>&emsp; constructor(name) { <br/>&emsp;&emsp; this._name = name; <br/>&emsp;&emsp; this._behaviour = 0; <br/>&emsp; } <br/></br/>&emsp; setName(newName) { </br/>&emsp;&emsp; if (typeof newName === \"string\") { </br/>&emsp;&emsp;&emsp; this._name = newName; </br/>&emsp;&emsp;}</br/>&emsp; } <br/><br/>&emsp; static generateName() { <br/>&emsp;&emsp; const names = ['Winnie', 'Bambi', 'Zoboomafoo', 'Harambe', 'Tony', 'Minnie'] <br/>&emsp;&emsp; const randomNumber = Math.floor(Math.random()*5); <br/>&emsp;&emsp; return names[randomNumber];<br/>&emsp; } <br/>} </br></br> const newPet = new Animal(Animal.generateName());",
+        "Classes": "<span>/* Classes: method and field declarations in classes are statements, no commas between them (unlike object KVP syntax). New instances are created using the \"new\" keyword. Methods prepended with \"static\" aka static methods are only callable on classes, not on instances. */</span> <br/><br/> class Animal { <br/>&emsp; constructor(name) { <br/>&emsp;&emsp; this._name = name; <br/>&emsp;&emsp; this._behaviour = 0; <br/>&emsp; } <br/></br/>&emsp; setName(newName) { </br/>&emsp;&emsp; if (typeof newName === \"string\") { </br/>&emsp;&emsp;&emsp; this._name = newName; </br/>&emsp;&emsp;}</br/>&emsp; } <br/><br/>&emsp; static generateName() { <br/>&emsp;&emsp; const names = ['Winnie', 'Bambi', 'Zoboomafoo', 'Harambe', 'Tony', 'Minnie'] <br/>&emsp;&emsp; const randomNumber = Math.floor(Math.random()*5); <br/>&emsp;&emsp; return names[randomNumber];<br/>&emsp; } <br/>} </br></br> const newPet = new Animal(Animal.generateName());",
 
-        "Inheritance": "Child class is created using \"extends\" keyword. A child class constructor calls the parent class constructor using the super() method. </br></br> // Parent class </br> class ConstructionProject { </br> &emsp; constructor(info) { </br>&emsp;&emsp; this.buildDate = info.buildDate; </br>&emsp;&emsp; this.name = info.name; } </br> } </br> // Child class <br/> class House extends ConstructionProject { </br>&emsp; constructor(houseData) { </br>&emsp;&emsp; super(houseData); </br>&emsp;&emsp; this.designer = houseData.designer; } </br> } </br></br> const myHouse = new House({ designer: 'Da Vinci', name: 'Hello World Museum', buildDate: 2023});",
+        "Inheritance": "<span>/* Inheritance: child class is created using \"extends\" keyword. A child class constructor calls the parent class constructor using the super() method. */</span> </br></br> <span>// Parent class</span> </br> class ConstructionProject { </br> &emsp; constructor(info) { </br>&emsp;&emsp; this.buildDate = info.buildDate; </br>&emsp;&emsp; this.name = info.name; } </br> } </br> <span>// Child class</span> <br/> class House extends ConstructionProject { </br>&emsp; constructor(houseData) { </br>&emsp;&emsp; super(houseData); </br>&emsp;&emsp; this.designer = houseData.designer; } </br> } </br></br> const myHouse = new House({ designer: 'Da Vinci', name: 'Hello World Museum', buildDate: 2023});",
 
         /* 
         // FE Individ Rsrcs
@@ -419,6 +442,7 @@ const pLangs = {
 
 const codeDisplayed = {};
 
+
 // FN that Produces Code-Boxes and add them to the Pl-Syn-Wn 
     // Will use plSyn global Obj, and pLangs global obj
 
@@ -512,6 +536,8 @@ function toggleCodeBoxes(ev) {
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn1.appendChild(codeBox1);
 
+            // Pin scrolling to the bottom
+            updateScrollWN1();
         }
 
         if (pl2) {
@@ -530,6 +556,9 @@ function toggleCodeBoxes(ev) {
 
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn2.appendChild(codeBox2);
+
+            // Pin scrolling to the bottom
+            updateScrollWN2();
         }
         
     }

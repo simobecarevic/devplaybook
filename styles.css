@@ -143,10 +143,6 @@ header {
     border-bottom: none;
 }
 
-main {
-    
-}
-
 .pl-notes-col {
     background-color: aqua;
 }
@@ -228,7 +224,6 @@ main {
     font-size: 1rem;
 }
 
-
 .pl-dropdown-1 a:hover, .pl-dropdown-2 a:hover {
     color: blue;
     font-size: 1.1rem;
@@ -270,9 +265,7 @@ main {
     min-width: 155.68px;
 }
 
-.pl-btn-1:hover {
-    
-}
+
 
 .pl-syn-wn {
     background-color: rgb(30, 31, 38);
@@ -286,17 +279,33 @@ main {
 
 .codeBox {
     box-sizing: border-box;
-    background-color: black;
+    background-color: white;
     min-height: 50px;
     width: 100%;
-    border-bottom: lime 0.5px solid;
-    color: white;
+    border: solid 1px rgb(221,221,221);
+    color: rgb(51, 51, 51); 
     font-family: "Source Code Pro";
     font-size: 0.75rem;
     border-radius: 7.5px;
     padding: 0.5rem;
+
+    animation: renderCodeBox 300ms linear;
 }
 
+@keyframes renderCodeBox {
+	from {
+		transform: scale(0.90);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;	
+	}
+}
+
+.codeBox span {
+    color: rgb(145,145,145); 
+}
 
 /* Syntax Feature Menus Section */
 
