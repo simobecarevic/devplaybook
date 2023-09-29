@@ -109,6 +109,22 @@ function update_btn1(e) {
 
             // Pin scrolling to the bottom
             updateScrollWN1();
+
+            // Add ref to CODEBOX to global codeboxesHeight; update_btn FNs need this info below 
+            codeBoxesHeights[pl1][synFTR] = codeBox1;
+
+            // Check if there is a PL2 selected; If yes, Implement codeBox height-matching, across Languages;
+            if (pLangs.pl2) {
+                // Get the codeBoxHeight for the codeBox of this same synFTR, for the other (pl2) lang; this was added to the codeBoxesHeights obj whether through update_btn2 or toggleCodeBoxes()
+                let codeBox2 = codeBoxesHeights[pLangs.pl2][synFTR];
+                
+                if (codeBox1.offsetHeight>codeBox2.offsetHeight) {
+                    codeBox2.style.height = `${codeBox1.offsetHeight}px`;
+                }
+                if (codeBox2.offsetHeight>codeBox1.offsetHeight) {
+                    codeBox1.style.height = `${codeBox2.offsetHeight}px`;
+                }
+            }
         }
     }
     
@@ -136,7 +152,7 @@ function update_btn2(e) {
         pl_syn_wn2.innerHTML = "";
     }
 
-    // If codeDisplayed has KVPs, i.e. Syn FTR menu buttons selected, for each synFTR/codeDisplayed, create a CodeBox and add it to the corrs PL-syn-wn
+    // If codeDisplayed has KVPs, i.e. Syn FTR menu buttons priorly selected, for each synFTR/codeDisplayed, create a CodeBox and add it to the corrs PL-syn-wn
     if (Object.keys(codeDisplayed).length !== 0) {
         for (let synFTR in codeDisplayed) {
             let pl2_syn = pLangsSyn[pl2]; 
@@ -155,6 +171,22 @@ function update_btn2(e) {
 
             // Pin scrolling to the bottom
             updateScrollWN2();
+
+            // Add ref to CODEBOX to global codeboxesHeight; update_btn FNs need this info below 
+            codeBoxesHeights[pl2][synFTR] = codeBox2;
+
+            // Check if there is a PL1 selected; If yes, Implement codeBox height-matching, across Languages;
+            if (pLangs.pl1) {
+                // Get the codeBoxHeight for the codeBox of this same synFTR, for the other (pl1) lang; this was added to the codeBoxesHeights obj whether through update_btn1 or toggleCodeBoxes()
+                let codeBox1 = codeBoxesHeights[pLangs.pl1][synFTR];
+                
+                if (codeBox1.offsetHeight>codeBox2.offsetHeight) {
+                    codeBox2.style.height = `${codeBox1.offsetHeight}px`;
+                }
+                if (codeBox2.offsetHeight>codeBox1.offsetHeight) {
+                    codeBox1.style.height = `${codeBox2.offsetHeight}px`;
+                }
+            }
         }
     }
 
@@ -442,6 +474,16 @@ const pLangs = {
 
 const codeDisplayed = {};
 
+/* codeBoxesForHeights: Keep STORE of all CODEBOXES added, (not just their heights), so that can make codeboxes of different PLs but for same SynFTR, the same height 
+- This obj is needed for the update_btn1() & update_btn2() FNs; toggleCodeBoxes(), if two PLs are selected, has access to both codeboxes (for each PL) and thus does not need to ref to a global store. 
+- need to store the CODEBOXes themselves, and not just their .offsetHeights, bc need to be able to REFERENCE
+*/
+const codeBoxesHeights = {
+    JavaScript: {},
+    Python: {},
+    Java: {}
+}
+
 
 // FN that Produces Code-Boxes and add them to the Pl-Syn-Wn 
     // Will use plSyn global Obj, and pLangs global obj
@@ -506,9 +548,10 @@ function toggleCodeBoxes(ev) {
         
     }
 
+    // codeBoxes are NOT already added for this synFTR (of btn pressed), tf...
     else {
 
-        // Check if either of these is "", empty Str/False
+        // Check if both of these are "" empty Str/False
         if (!(pl1 || pl2)) {
             alert("Choose at least one Programming Language");
             return;
@@ -526,8 +569,8 @@ function toggleCodeBoxes(ev) {
             // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
             let pl1_code = pl1_syn[synFTR];
         
-            // Create codeBoxes and put the pl Code in each
-            let codeBox1 = document.createElement("div");
+            // Create codeBoxes and put the pl Code in each; use var so that can access outside this block for height matching
+            var codeBox1 = document.createElement("div");
             codeBox1.classList.add("codeBox");
             // Give the codebox an Id so that it can be removed easily
             codeBox1.id = synFTR + "1";
@@ -536,8 +579,11 @@ function toggleCodeBoxes(ev) {
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn1.appendChild(codeBox1);
 
-            // Pin scrolling to the bottom
+            // Pin scrolling to the bottom; top of bottom-most codebox
             updateScrollWN1();
+
+            // Add ref to CODEBOX to global codeboxesHeight; won't need this obj in this FN, but update_btn will need this; if this synFTR for this pl1 was already selected in this same session, then will simply overwrite
+            codeBoxesHeights[pl1][synFTR] = codeBox1;
         }
 
         if (pl2) {
@@ -546,8 +592,8 @@ function toggleCodeBoxes(ev) {
             // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
             let pl2_code = pl2_syn[synFTR];
 
-            // Create codeBoxes and put the pl Code in each
-            let codeBox2 = document.createElement("div");
+            // Create codeBoxes and put the pl Code in each; use var so that can access outside this block for height matching
+            var codeBox2 = document.createElement("div");
             codeBox2.classList.add("codeBox");
 
             // Give the codebox an Id so that it can be removed easily
@@ -559,10 +605,25 @@ function toggleCodeBoxes(ev) {
 
             // Pin scrolling to the bottom
             updateScrollWN2();
+
+            // Add ref to CODEBOX to global codeboxesHeight; won't need this obj in this FN, but update_btn will need this; if this synFTR for this pl1 was already selected in this same session, then will simply overwrite
+            codeBoxesHeights[pl2][synFTR] = codeBox2;
+
+            // Implement codeBox Height-matching, across Languages
+            if (pl1) {
+                if (codeBox1.offsetHeight>codeBox2.offsetHeight) {
+                    codeBox2.style.height = `${codeBox1.offsetHeight}px`;
+                }
+                if (codeBox2.offsetHeight>codeBox1.offsetHeight) {
+                    codeBox1.style.height = `${codeBox2.offsetHeight}px`;
+                }
+            }
+            // height-matching needed only HERE, inside pl2 block, bc only want to match heights if both langs are selected; if just one lang in one WN, then height can stay its natural height. BUT will add this functionality into updateButton() FNs, in case that a lang is already added.
         }
-        
+
     }
 
+    
     // Toggle the Styling of the Button that was pressed.
     const btnPressed = ev.target;
     btnPressed.classList.toggle("syn-btn-on");
