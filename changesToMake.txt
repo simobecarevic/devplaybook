@@ -1,0 +1,24 @@
+Changes to Make
+
+- Fix CodeBox Height Bug when change the PLS multiple times
+- Fix Bug whereby when adjust window screen, shrinking of the Code windows does not occur same across PL WNs
+- Fix Bug where windows are sometimes NOT the same size.
+
+Finished
+X fix IDs given to codeBoxes, make them ONE word, when create them, and when REMOVE them. 
+
+All Languages
+- Add Iteration Modification Keywords break and continue 
+- Use of "pass" kw in Python and equivalents in other languages
+- String interpolation methods
+- Private and public class/object properties/methods/fields
+- Key word arguments in Python and equivalent in other PLs
+- Loop shorthands: Ternary Operator JS, list comprehension Python
+
+
+
+JavaScript
+- Add User Input for BE https://www.codecademy.com/article/getting-user-input-in-node-js
+- Review and edit everything from JS User Input onwards
+
+
