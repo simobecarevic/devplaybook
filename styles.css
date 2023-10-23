@@ -538,4 +538,8 @@ footer {
         font-size: 0.6rem;
     }
 
+    .basic-btn, .cf-btn, .oop-btn {
+        font-size: 0.7rem;
+    }
+
 }
