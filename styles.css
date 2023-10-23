@@ -177,16 +177,22 @@ header {
 
 .pl-wns {
     display: grid;
-    grid-template-columns: 40% 40%;
+    grid-template-columns: 50% 50%;
     justify-content: center; 
-    
 }
 
 .pl-wn {
-    margin: 0 40px 0; 
     display: grid;
     grid-template-columns: 100%;
     /* justify-content: center; This is default val, unnecessary */
+}
+
+.language1 {
+    margin: 0 5% 0 10%; 
+}
+
+.language2 {
+    margin: 0 10% 0 5%;
 }
 
 
@@ -203,8 +209,10 @@ header {
     font-weight: 600;
     font-size: 0.9rem;
     border: none;
-    
+
+    width: 155.68px;
 }
+
 
 .pl-dropdown-1, .pl-dropdown-2 {
     /* display: none; */
@@ -266,9 +274,7 @@ header {
     border-radius: 7.5px 7.5px 0 0;
 } 
 
-.pl-btn {
-    min-width: 155.68px;
-}
+
 
 
 
@@ -329,12 +335,12 @@ header {
 
 .syn-ftr-menus {
     display: flex; 
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .syn-ftr-menu {
-    padding: 0 3%;
+    width: 16%;
 }
 
 .cat-btn {
@@ -353,8 +359,7 @@ header {
 }
 
 .syn-ftr-menus button {
-    width: 120px;
-    padding: 5px;
+    width: 100%;
     font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     /* border-radius: 7.5px; */
     border: 1px solid white;
@@ -447,3 +452,88 @@ footer {
 }
 
 
+/* Responsive, Mobile-Friendly Styling */
+
+
+@media screen and (max-width: 822px) {
+
+    .syn-ftr-menu {
+        width: 18%;
+    }
+
+    .gen-syn-btn, .gen-btn {
+        font-size: 0.70rem;
+    }
+    
+}
+
+@media screen and (max-width: 495px) {
+
+    .header-content {
+        padding: 16px 0;
+    }
+
+    .logo-symbol {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0 3px 0 0;
+    }
+
+    .logo-title {
+        color: white;
+        font-size: 1rem;
+        padding: auto 0;
+    }
+
+    .header-nav {
+        margin: 0 0 0 10px;
+    }
+
+    .header-nav-signup {
+        padding: 0;
+        font-size: 0.8rem;
+        line-height: 1.25rem;
+    }
+
+    .header-nav-tools-btn {
+        padding: 0;
+        font-size: 0.8rem;
+        line-height: 1.25rem;
+    }
+
+    .comparison-tool-title {
+        margin: 80px 10% 32px;
+        color: white;
+        text-align: center;
+    }
+
+    .comparison-heading {
+        font-size: 1.2rem;
+    }
+
+    .pl-btn {
+        width: 110px;
+        font-size: 0.7rem;
+        border-radius: 6px;
+        padding: 4px;
+        min-height: 35px;
+    }
+
+    .pl-dropdown-1, .pl-dropdown-2 {
+        width: 110px;
+        
+    }
+
+    .pl-dropdown-1 a, .pl-dropdown-2 a {
+        font-size: 0.7rem;
+    }
+    
+    .gen-syn-btn, .gen-btn {
+        font-size: 0.45rem;
+    }
+
+    .modularity-syn-btn, .mod-btn {
+        font-size: 0.6rem;
+    }
+
+}
