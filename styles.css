@@ -152,13 +152,22 @@ header {
     background-color: aqua;
 }
 
+/* Coming Soon heading used on Home Page, and two of the tool pages */
+.coming-soon-div {
+    width: 90%;
+    margin: 128px auto;
+}
+
+.coming-soon {
+    color: white;
+    margin: 20px;
+}
+
+
 /* Home Sign Up Page */
 
 .homesignup {
-    margin: 64px 0 0;
     background-image: url("images/universe2.jpg");
-    color: white;
-    height: 100vw;
     background-size: cover;   
 }
 
