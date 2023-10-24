@@ -359,31 +359,6 @@ const pLangs = {
 const codeDisplayed = {};
 
 
-// FN that Produces Code-Boxes and add them to the Pl-Syn-Wn 
-    // Will use plSyn global Obj, and pLangs global obj
-
-/* Didn't end up creating a createCodeBox FN... too much complexity; just copy code from below toggleCodeBoxes and put in updateBtn Fn
-// Create a FN simply for creating a CodeBox, based on an input of the syntax FTR (i.e. the innerHTML of the Syn Ftr Buttons); this nested FN will be called in toggleCodeBoxes, but also in the above updateBtn() FN (conditional on synFTRs already being selected)
-
-function createCodeBox(synFTR, pl, plWN) {
-    // Select for the PL's Syn Obj in PLs Syn obj
-    let pl_syn = pLangsSyn[pl]; 
-    // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
-    let pl_code = pl_syn[synFTR];
-
-    // Create codeBoxes and put the pl Code in each
-    let codeBox = document.createElement("div")
-    codeBox.classList.add("codeBox");
-    // Give the codebox an Id so that it can be removed easily
-    codeBox.id = synFTR + plWN;
-    codeBox.innerHTML = pl_code;
-    
-    // Append codeBox to the corres pl-syn-wn
-    pl_syn_wn1.appendChild(codeBox1);
-    
-}
- */
-
 function toggleCodeBoxes(ev) {
     
     // Extract the SYN FTR you are toggling
@@ -398,7 +373,7 @@ function toggleCodeBoxes(ev) {
 
         // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
         if (pl1) {
-            // Get the codeBox Els that are already in the wns; first get rid of spaces in the synFTR
+            // Get the codeBox Els that are already in the wns; first get rid of spaces in the synFTR to get proper ID
             let synFTRNoSpaces = synFTR.split(" ").join(""); 
             let codeBox1 = pl_syn_wn1.children.namedItem(synFTRNoSpaces + "1");
             // Remove the codeBoxes 

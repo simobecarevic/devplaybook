@@ -503,6 +503,27 @@ footer {
         line-height: 1.25rem;
     }
 
+    .tools-dropdown {
+        width: 70px;
+        padding: 16px 16px 0 16px;
+    }
+
+    .tools-dropdown a {
+        font-size: 0.6rem;
+        padding: 3px 0 9px 0;
+    }
+
+    .header-nav-tools:hover .tools-dropdown {
+        visibility: visible; /* causes drop-down to appear */
+        
+        transition-property: transform opacity;
+        transition-duration: 500ms;
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
     .comparison-tool-title {
         margin: 80px 10% 32px;
         color: white;
