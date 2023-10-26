@@ -50,6 +50,20 @@ const pLangs = {
 }
 
 
+/* Create Function to match heights of CodeBoxes, to use in toggleCodeBoxes and in updateBtn1 updateBtn2 */
+
+function matchBoxHeight(cb1, cb2){
+    let cb1H = cb1.offsetHeight;
+    let cb2H = cb2.offsetHeight;
+    if (cb1H > cb2H) {
+        cb2.setAttribute("style", `height: ${cb1H}px`);
+    }
+    if (cb2H > cb1H) {
+        cb1.setAttribute("style", `height: ${cb2H}px`);
+    }
+}
+
+
 /* Create FN to PIN SCROLLING in the PL-SYN-WNs to the BOTTOM of each, whenever a codeBox element is added 
 - This will be needed for the update_btn FNs below, as well as the toggleCodeBoxes() FN
 */
@@ -61,7 +75,7 @@ function updateScrollWN1(){
 
 function updateScrollWN2(){
     let lastChildHeight = pl_syn_wn2.lastElementChild.offsetHeight;
-    pl_syn_wn2.scrollTop = pl_syn_wn2.scrollHeight - lastChildHeight;
+    pl_syn_wn2.scrollTop = pl_syn_wn2.scrollHeight - lastChildHeight; 
 }
 
 
@@ -70,6 +84,7 @@ function updateScrollWN2(){
     // Updates the pLangs object
     // Renders corres codeBoxes if codeDisplayed (exists, i.e. obj as KVPs), i.e. syn ftr menu buttons are selected
     // If there are codeBoxes already in the PL-wn (bc a PL was chosen before), remove them
+    // If there are codeBoxes in other window, matchBoxHeight
 function update_btn1(e) { 
     e.preventDefault();
 
@@ -103,9 +118,13 @@ function update_btn1(e) {
             codeBox1.id = synFTRNoSpaces + "1";
             codeBox1.innerHTML = pl1_code;
             
-            // Append codeBox to the corres pl-syn-wn
+            // Append codeBox to the corres pl-syn-wn 
             pl_syn_wn1.appendChild(codeBox1);
-            
+
+            // Get the corresponding CodeBox from the other PL WN, and match the heights
+            let codeBox2 = pl_syn_wn2.children.namedItem(synFTRNoSpaces + "2");
+            matchBoxHeight(codeBox1, codeBox2);
+
             // Pin scrolling to the bottom
             updateScrollWN1();
         }
@@ -148,6 +167,10 @@ function update_btn2(e) {
             
             // Append codeBox to the corres pl-syn-wn
             pl_syn_wn2.appendChild(codeBox2);
+
+            // Get the corresponding CodeBox from the other PL WN, and match the heights
+            let codeBox1 = pl_syn_wn1.children.namedItem(synFTRNoSpaces + "1");
+            matchBoxHeight(codeBox1, codeBox2);
 
             // Pin scrolling to the bottom
             updateScrollWN2();
@@ -368,7 +391,7 @@ function toggleCodeBoxes(ev) {
     let pl1 = pLangs.pl1; // VRs in JS are all all function scoped, so I can re-use this VR name
     let pl2 = pLangs.pl2;
 
-    // Check if codeBoxes already added for this Syn-Ftr
+    // Check if codeBoxes already added for this Syn-Ftr, delete them (hence toggling)
     if (codeDisplayed[synFTR]) {
 
         // This LOGIC also needs to be split up into conditions for if each of PL1 and PL2 exist, if they have been selected, that is, only remove in each PL-SYN-WN if a PL for that syn-wn has been selected
@@ -395,28 +418,28 @@ function toggleCodeBoxes(ev) {
         
     }
 
-    // codeBoxes are NOT already added for this synFTR (of btn pressed), tf...
+    // Code boxes are NOT already added for this synFTR (of btn pressed), tf Add them
     else {
 
-        // Check if both of these are "" empty Str/False
+        // Check if niether of the PLs are selected, i.e. "" empty Str/False 
         if (!(pl1 || pl2)) {
             alert("Please choose at least one Programming Language");
             return;
         }
 
-        // If either of the PL is selected, add the Syn Ftr (i.e. synFTR) to the codeDisplayed object
+        // If either of the PLs is selected, add the Syn Ftr (i.e. synFTR) to the codeDisplayed object
         if (pl1 || pl2) {
             codeDisplayed[synFTR] = true;
         }
 
-        // Need to split the logic for each PL, PL-wn, in two conditional statements, in case only one PL is selected
+        // Create and add CodeBox(es); Need to split the logic for each PL, PL-wn, in two conditional statements, in case only one PL is selected; 
         if (pl1) {
             // Select for the PL's Syn Obj in PLs Syn obj
             let pl1_syn = pLangsSyn[pl1]; 
             // Extract the specifc syn-code based on the Button clicked, i.e. the synFTR - use it as index
             let pl1_code = pl1_syn[synFTR];
         
-            // Create codeBoxes and put the pl Code in each; use var so that can access outside this block for height matching
+            // Create codeBoxes and put the PL Code in each; use var so that can access outside this block for height matching
             var codeBox1 = document.createElement("div");
             codeBox1.classList.add("codeBox");
             // Give the codebox an Id so that it can be removed easily; first get rid of spaces in the synFTR so the id does not bug
@@ -451,11 +474,20 @@ function toggleCodeBoxes(ev) {
 
             // Pin scrolling to the bottom
             updateScrollWN2();
+        }
 
+        if (codeBox1 && codeBox2) {
+            console.log("both codeboxes created");
+            // Match heights of codeboxes with margin
+            console.log("before cb1H: ", codeBox1.offsetHeight);
+            console.log("before cb2H: ", codeBox2.offsetHeight);
+            matchBoxHeight(codeBox1, codeBox2);
+            console.log("after cb1H: ", codeBox1.offsetHeight);
+            console.log("after cb2H: ", codeBox2.offsetHeight);
+            
         }
 
     }
-
     
     // Toggle the Styling of the Button that was pressed.
     const btnPressed = ev.target;
