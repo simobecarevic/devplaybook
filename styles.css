@@ -575,6 +575,14 @@ footer {
         font-size: 0.7rem;
     }
     
+    .codeBox {
+        font-size: 0.6rem;
+    }
+
+    #cb_heading {
+        font-size: 0.75rem;
+    }
+
     .gen-syn-btn, .gen-btn {
         font-size: 0.5rem;
     }
