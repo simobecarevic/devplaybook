@@ -584,15 +584,20 @@ footer {
     }
 
     .gen-syn-btn, .gen-btn {
-        font-size: 0.5rem;
+        font-size: 0.45rem;
     }
 
     .modularity-syn-btn, .mod-btn {
         font-size: 0.6rem;
     }
 
+    #mod-btn-asynch {
+        font-size: 0.4rem;
+    }
+
     .basic-btn, .cf-btn, .oop-btn {
-        font-size: 0.7rem;
+        font-size: 0.55rem;
+        
     }
 
 }
